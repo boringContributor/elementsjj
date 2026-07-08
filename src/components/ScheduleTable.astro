@@ -1,18 +1,36 @@
 ---
 import type { GymSchedule } from '../data/schedule';
+import { LOCATIONS } from '../data/site';
 
 interface Props {
   gym: GymSchedule;
 }
 
 const { gym } = Astro.props;
-const accent = { blue: 'text-course-blue', red: 'text-primary', kelheim: 'text-gold' }[gym.id];
+const accent = gym.id === 'red' ? 'text-primary' : 'text-course-blue';
+const location = LOCATIONS.find((loc) => loc.slug === gym.id);
 ---
 
 <section id={gym.id} class="scroll-mt-24">
   <h2 class:list={['font-display text-2xl font-bold tracking-wide uppercase', accent]}>
     {gym.label}
   </h2>
+  {location && (
+    <p class="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true">
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+      <a
+        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-smooth hover:text-primary"
+      >
+        {location.address}
+      </a>
+    </p>
+  )}
   <div class="mt-4 overflow-x-auto rounded-lg border border-border">
     <table class="w-full min-w-[560px] border-collapse text-left text-sm">
       <caption class="sr-only">Stundenplan {gym.label} — Elements Jiu Jitsu</caption>
@@ -23,31 +41,33 @@ const accent = { blue: 'text-course-blue', red: 'text-primary', kelheim: 'text-g
         </tr>
       </thead>
       <tbody>
-        {gym.schedule
-          .filter((day) => day.slots.length > 0)
-          .map((day) => (
-            <tr class="border-b border-border last:border-b-0">
-              <th scope="row" class="w-32 px-4 py-3 align-top font-semibold whitespace-nowrap">
-                {day.day}
-              </th>
-              <td class="px-4 py-3">
-                <ul class="space-y-2">
-                  {day.slots.map((slot) => (
-                    <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <time class="font-mono text-xs whitespace-nowrap text-muted-foreground">{slot.time}</time>
-                      <span class="font-medium">{slot.name}</span>
-                      <span class="text-xs text-muted-foreground">({slot.audience})</span>
-                      {slot.parallel && (
-                        <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">
-                          Parallel
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </td>
-            </tr>
-          ))}
+        {gym.schedule.map((day) => (
+          <tr class="border-b border-border last:border-b-0">
+            <th scope="row" class="w-32 px-4 py-3 align-top font-semibold whitespace-nowrap">
+              {day.day}
+            </th>
+            <td class="px-4 py-3">
+              <ul class="space-y-2">
+                {day.slots.map((slot) => (
+                  <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <time class="font-mono text-xs whitespace-nowrap text-muted-foreground">{slot.time}</time>
+                    <span class="font-medium">{slot.name}</span>
+                    {slot.kids && (
+                      <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-gold uppercase">
+                        {slot.kids}
+                      </span>
+                    )}
+                    {slot.parallel && (
+                      <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">
+                        Parallel
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>

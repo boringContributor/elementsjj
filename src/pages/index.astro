@@ -166,7 +166,7 @@ const websiteLd = {
     <SectionHeading kicker="Stundenplan auf einen Blick">
       Wann du trainieren kannst
     </SectionHeading>
-    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+    <div class="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
       {HOME_SCHEDULE_SUMMARY.map((gym) => (
         <div class="rounded-lg border border-border bg-card p-6">
           <h3 class:list={['font-display text-lg font-bold tracking-wide uppercase', accentText[gym.accent]]}>

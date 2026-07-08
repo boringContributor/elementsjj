@@ -9,16 +9,12 @@ const breadcrumbs = [
   { name: 'Stundenplan', href: '/stundenplan' },
 ];
 
-const jumpLinks = [
-  { href: '#blue', label: 'Blue Gym' },
-  { href: '#red', label: 'Red Gym' },
-  { href: '#kelheim', label: 'Kelheim' },
-];
+const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
 ---
 
 <BaseLayout
-  title="Stundenplan — Elements Jiu Jitsu Regensburg & Kelheim"
-  description="Trainingszeiten für BJJ, MMA, Thaiboxen, Grappling und Kindertraining an allen Standorten."
+  title="Stundenplan — Elements Jiu Jitsu Regensburg"
+  description="Trainingszeiten für BJJ, MMA, Thaiboxen, Grappling und Kindertraining im Blue Gym und Red Gym in Regensburg."
   breadcrumbs={breadcrumbs}
 >
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
