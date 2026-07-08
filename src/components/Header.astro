@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/ejj-logo.png';
+import { SITE } from '../data/site';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Kampfsportangebot', href: '/kampfsportangebote' },
+  { label: 'Specials', href: '/spezialitaeten' },
+  { label: 'Team', href: '/team' },
+  { label: 'Stundenplan', href: '/stundenplan' },
+  { label: 'Standorte', href: '/standorte' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+    <a href="/" class="flex shrink-0 items-center gap-2" aria-label="Elements Jiu Jitsu Regensburg — Startseite">
+      <Image src={logo} alt="Elements Jiu Jitsu Regensburg Logo" width="80" height="80" class="h-10 w-10 object-contain" loading="eager" />
+      <span class="font-display text-lg font-bold tracking-wider whitespace-nowrap">
+        Elements <span class="text-primary">Jiu Jitsu</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          aria-current={currentPath === item.href ? 'page' : undefined}
+          class:list={[
+            'rounded-md px-3 py-2 text-sm font-medium transition-smooth hover:bg-secondary hover:text-foreground',
+            currentPath === item.href ? 'text-foreground' : 'text-muted-foreground',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={SITE.shopUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-smooth hover:bg-secondary hover:text-foreground"
+      >
+        Shop
+      </a>
+      <a
+        href="/probetraining"
+        class="gradient-neon ml-2 rounded-md px-4 py-2 text-sm font-semibold text-primary-foreground transition-smooth hover:opacity-90"
+      >
+        Probetraining
+      </a>
+    </nav>
+
+    <details class="relative lg:hidden">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border border-border text-foreground [&::-webkit-details-marker]:hidden"
+        aria-label="Menü öffnen"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+      </summary>
+      <nav
+        class="absolute right-0 mt-2 flex w-64 flex-col gap-1 rounded-lg border border-border bg-card p-2 shadow-xl"
+        aria-label="Mobile Navigation"
+      >
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-smooth hover:bg-secondary hover:text-foreground"
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href={SITE.shopUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-smooth hover:bg-secondary hover:text-foreground"
+        >
+          Shop
+        </a>
+        <a
+          href="/probetraining"
+          class="gradient-neon mt-1 rounded-md px-3 py-2 text-center text-sm font-semibold text-primary-foreground"
+        >
+          Probetraining
+        </a>
+      </nav>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { SPECIALS } from '../data/specials';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Specials', href: '/spezialitaeten' },
+];
+---
+
+<BaseLayout
+  title="Specials — Elements Jiu Jitsu Regensburg"
+  description="Kindergeburtstag, Seminare, Privatstunden, Fitness und Open Mat bei EJJ Regensburg & Kelheim — alle Details zu unseren Specials."
+  breadcrumbs={breadcrumbs}
+>
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <SectionHeading kicker="Mehr als nur Klassen" as="h1">
+      Unsere Specials
+      <Fragment slot="sub">
+        <p>Vom Kampfsport-Kindergeburtstag bis zur Open Mat – klick dich rein und erfahre alle Details.</p>
+      </Fragment>
+    </SectionHeading>
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {SPECIALS.map((special) => (
+        <a
+          href={`/specials/${special.slug}`}
+          class="group overflow-hidden rounded-lg border border-border bg-card transition-smooth hover:-translate-y-1 hover:border-primary/60"
+        >
+          <div class="aspect-[4/3] overflow-hidden">
+            <Image
+              src={special.image}
+              alt={`${special.name} bei Elements Jiu Jitsu Regensburg`}
+              widths={[400, 640, 960]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              class="h-full w-full object-cover transition-smooth group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <h2 class="font-display text-lg font-semibold tracking-wide">{special.name}</h2>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{special.desc}</p>
+            <p class="mt-3 text-sm font-semibold text-primary">Mehr erfahren →</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="mt-12 text-center">
+      <a
+        href="/probetraining"
+        class="gradient-neon shadow-neon inline-block rounded-md px-8 py-3 font-semibold text-primary-foreground transition-smooth hover:opacity-90"
+      >
+        Kostenloses Schnuppertraining buchen
+      </a>
+    </div>
+  </section>
+</BaseLayout>

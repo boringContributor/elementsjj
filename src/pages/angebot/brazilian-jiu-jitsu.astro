@@ -1,0 +1,83 @@
+---
+import OfferShell from '../../components/OfferShell.astro';
+import { OFFERS } from '../../data/offers';
+
+const image = OFFERS.find((offer) => offer.slug === 'brazilian-jiu-jitsu')!.image;
+
+const belts = [
+  ['Weißgurt', 'Der Einstieg. Jeder fängt hier an. Fokus auf Grundlagen, Körpergefühl und sicheres Fallen.'],
+  ['Blaugurt', 'Die erste große Stufe. Du kannst dich bereits effektiv verteidigen und kontrollierst die Grundlagen.'],
+  ['Lilagurt', 'Das Fortgeschrittenen-Level. Techniken werden flüssiger, dein eigener Stil entwickelt sich.'],
+  ['Braungurt', 'Die Meisterstufe vor dem Blackbelt. Tiefes Verständnis für Hebel, Positionen und Taktik.'],
+  ['Schwarzgurt', 'Der Beleg für jahrelange Disziplin, technische Exzellenz und Konstanz.'],
+];
+---
+
+<OfferShell
+  title="Brazilian Jiu-Jitsu (BJJ) in Regensburg & Kelheim — Elements Jiu Jitsu"
+  description="BJJ in Regensburg & Kelheim: Bodenkampf, Hebel, Submissions. Reality-Check durch Sparring, klares Gürtelsystem, Takedowns aus Ringen & Judo. Kostenloses Probetraining."
+  kicker="Kampfsportangebot"
+  heading="Brazilian Jiu-Jitsu (BJJ) in"
+  headingAccent="Regensburg & Kelheim"
+  subtitle="Die Kunst des Bodenkampfs — Technik, Hebel und maximale Kontrolle besiegen rohe Kraft."
+  ogImage={image}
+  slug="brazilian-jiu-jitsu"
+  equipment={[
+    ['Kleidung:', 'Eine einfache Sporthose (ohne Taschen/Reißverschlüsse) und ein sauberes T-Shirt oder Rashguard.'],
+    ['Wichtig:', 'Ein Handtuch, etwas zu trinken und eine große Portion Motivation! Trainiert wird barfuß auf der Matte.'],
+  ]}
+  ctaLabel="Jetzt kostenloses BJJ-Probetraining vereinbaren"
+>
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Was ist Brazilian Jiu-Jitsu?</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Brazilian Jiu-Jitsu (BJJ) ist eine hocheffektive, griff-orientierte Kampfsportart, bei der es
+      darum geht, einen selbst wehrhaften Gegner durch Technik und Positionierung zu kontrollieren
+      und letztendlich zur Aufgabe (Submission) zu zwingen. Da Kontrolle auf dem Boden deutlich
+      effektiver ist als im Stand, ist der Großteil der BJJ-Techniken bodenorientiert. Das Ziel ist
+      klar: Den Gegner sicher zu Boden bringen, dort absolut zu kontrollieren und ihn für sich und
+      andere ungefährlich zu machen.
+    </p>
+  </section>
+
+  <section class="rounded-lg border border-border bg-card p-6">
+    <h2 class="font-display text-2xl font-bold uppercase">Der reale Vorteil — Reality Check</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Das Besondere am BJJ bei Elements: Es gibt keine theoretischen Formenprüfungen. Unser Sport
+      ist pure Praxis. Durch regelmäßiges Sparring – das sogenannte „Rollen“ – erhältst du in jedem
+      Training einen sofortigen Reality-Check. Du lernst unter Druck blitzschnell Lösungen zu
+      finden, wirst fitter, gesünder und baust ein unerschütterliches Selbstbewusstsein auf. Große
+      Berühmtheit erlangte BJJ durch die ersten UFC-Turniere in den 90er-Jahren, bei denen es sich
+      im Vergleich aller Kampfsportarten als die mit Abstand effektivste Disziplin durchgesetzt hat.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Das Gürtelsystem — dein Fortschritt</h2>
+    <ol class="mt-5 space-y-3">
+      {belts.map(([belt, text]) => (
+        <li class="rounded-lg border border-border bg-card p-4">
+          <h3 class="font-display font-semibold">{belt}</h3>
+          <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+      Hinweis: Bei Elements werden Gürtel nicht erkauft oder durch Auswendiglernen erlangt. Sie
+      werden individuell vom Trainer verliehen, sobald dein Level – angepasst an deine persönlichen
+      Voraussetzungen wie Alter, Beruf oder sportliche Ziele – bereit dafür ist. Im Schnitt dauert
+      der Weg zum nächsten Gürtel etwa zwei Jahre.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Unser allumfassender Ansatz — BJJ, Ringen &amp; Judo</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Ein moderner MMA- oder Selbstverteidigungskampf entscheidet sich oft im Übergang zum Boden.
+      Weil wir dich allumfassend vorbereiten wollen, legt unser BJJ-Programm bei Elements extrem
+      großen Wert auf die Integration von Elementen aus dem klassischen Ringen (Takedowns) und
+      Judo. Nur eine erprobte Kampfkunst mit regelmäßigem, sicherem Sparring hilft dir in einer
+      echten Situation wirklich weiter.
+    </p>
+  </section>
+</OfferShell>

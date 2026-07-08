@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { LOCATIONS } from '../data/site';
+import gymBlue from '../assets/gyms/gym-blue.jpg';
+import gymRed from '../assets/gyms/gym-red.jpg';
+import type { ImageMetadata } from 'astro';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Standorte', href: '/standorte' },
+];
+
+const accentText = { blue: 'text-course-blue', red: 'text-primary', gold: 'text-gold' } as const;
+const gymImages: Record<string, ImageMetadata | undefined> = { blue: gymBlue, red: gymRed };
+
+function mapsUrl(address: string): string {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+}
+---
+
+<BaseLayout
+  title="Standorte — Elements Jiu Jitsu Regensburg & Kelheim"
+  description="Drei Standorte: Regensburg Blue, Regensburg Red und Kelheim."
+  breadcrumbs={breadcrumbs}
+>
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <SectionHeading kicker="Wo wir trainieren" as="h1">
+      Unsere Standorte
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {LOCATIONS.map((loc) => (
+        <div class="overflow-hidden rounded-lg border border-border bg-card">
+          {gymImages[loc.slug] && (
+            <Image
+              src={gymImages[loc.slug]!}
+              alt={`Trainingshalle ${loc.name} — Elements Jiu Jitsu`}
+              widths={[400, 640, 960]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          )}
+          <div class="p-6">
+            <h2 class:list={['font-display text-xl font-bold uppercase', accentText[loc.accent]]}>{loc.name}</h2>
+            <p class="mt-2 text-sm text-muted-foreground">{loc.address}</p>
+            <a
+              href={mapsUrl(loc.address)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-block text-sm font-semibold text-primary transition-smooth hover:opacity-80"
+            >
+              Route berechnen →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

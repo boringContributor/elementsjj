@@ -1,0 +1,71 @@
+---
+import OfferShell from '../../components/OfferShell.astro';
+import BenefitCard from '../../components/BenefitCard.astro';
+import { OFFERS } from '../../data/offers';
+
+const image = OFFERS.find((offer) => offer.slug === 'grappling-nogi')!.image;
+---
+
+<OfferShell
+  title="Grappling & NoGi in Regensburg & Kelheim — Elements Jiu Jitsu"
+  description="Grappling / NoGi in Regensburg & Kelheim: Dynamischer Bodenkampf, Würfe und Submissions ohne Gi. Fundament für MMA & Selbstverteidigung. Jetzt Probetraining sichern."
+  kicker="Kampfsportangebot"
+  heading="Grappling & NoGi in"
+  headingAccent="Regensburg & Kelheim"
+  subtitle="Die Kunst des Nahkampfes — Dynamischer Bodenkampf, Würfe und Hebeltechniken komplett ohne Gi (Anzug)."
+  ogImage={image}
+  slug="grappling-nogi"
+  equipment={[
+    ['Kleidung:', 'Eine kurze Sporthose oder Boardshorts (ohne Taschen und Reißverschlüsse) sowie ein eng anliegendes T-Shirt oder ein Funktionsshirt (Rashguard).'],
+    ['Wichtig:', 'Ein Handtuch, ausreichend zu trinken und eine große Portion Neugier. Trainiert wird hygienisch und barfuß auf der Matte.'],
+  ]}
+  ctaLabel="Jetzt kostenloses Grappling-Probetraining vereinbaren"
+>
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Was ist Grappling / NoGi?</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Grappling (oft auch als NoGi Jiu-Jitsu oder Submission Wrestling bezeichnet) ist eine extrem
+      facettenreiche und moderne Kampfsportart, die das Beste aus verschiedenen Stilen wie dem
+      Brazilian Jiu-Jitsu, Ringen, Judo und Sambo vereint. Im Gegensatz zum klassischen BJJ wird
+      hier komplett ohne den traditionellen Kimono (Gi) trainiert – stattdessen in sportlicher
+      Funktionskleidung (Rashguard und Shorts). Dadurch wird das Training schneller, dynamischer
+      und rutschiger, was ein maximales Maß an technischer Präzision, Schnelligkeit und
+      strategischem Denken erfordert.
+    </p>
+  </section>
+
+  <section class="rounded-lg border border-border bg-card p-6">
+    <h2 class="font-display text-2xl font-bold uppercase">Wie funktioniert das Training bei Elements?</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Das Ziel im Grappling ist klar: Den Gegner durch clevere Hebelwirkungen, Griffe und
+      Positionen zu überwältigen, sicher zu Boden zu bringen und dort durch eine Submission (Hebel-
+      oder Würgegriff) zur kontrollierten Aufgabe zu zwingen. Da man sich nicht an der Kleidung des
+      Gegners festhalten kann, lernst du bei Elements ein tiefes Verständnis für Biomechanik,
+      Körperkontrolle und Gewichtsverteilung. Grappling ist zudem das fundamentale Fundament für
+      jeden modernen MMA-Kämpfer und bietet einen unschlagbaren Reality-Check für reale
+      Selbstverteidigungssituationen.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Die Vorteile für Körper &amp; Geist</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      <BenefitCard title="Hochintensives Fitness-Workout">
+        Grappling fordert jede Muskelgruppe. Es verbrennt massiv Kalorien, verbessert deine
+        Flexibilität, Core-Stärke und funktionelle Kondition wie kaum ein anderer Sport.
+      </BenefitCard>
+      <BenefitCard title="Strategisches Denken">
+        Unter Druck schnell Lösungen finden – Grappling wird oft als „menschliches Schach“
+        bezeichnet, bei dem Technik und Taktik über rohe Kraft triumphieren.
+      </BenefitCard>
+      <BenefitCard title="Effektive Nahkampf-Kontrolle">
+        Lerne die effektivsten Clinch-Übergänge aus dem Ringen sowie die absolute Kontrolle am
+        Boden, um dich in jeder Situation sicher behaupten zu können.
+      </BenefitCard>
+      <BenefitCard title="Für jedes Fitnesslevel">
+        Egal ob absoluter Anfänger ohne Vorkenntnisse oder ambitionierter Wettkämpfer und
+        MMA-Sportler – unser strukturiertes Training holt dich genau dort ab, wo du stehst.
+      </BenefitCard>
+    </div>
+  </section>
+</OfferShell>

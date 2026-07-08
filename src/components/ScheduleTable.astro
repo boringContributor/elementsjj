@@ -1,0 +1,54 @@
+---
+import type { GymSchedule } from '../data/schedule';
+
+interface Props {
+  gym: GymSchedule;
+}
+
+const { gym } = Astro.props;
+const accent = { blue: 'text-course-blue', red: 'text-primary', kelheim: 'text-gold' }[gym.id];
+---
+
+<section id={gym.id} class="scroll-mt-24">
+  <h2 class:list={['font-display text-2xl font-bold tracking-wide uppercase', accent]}>
+    {gym.label}
+  </h2>
+  <div class="mt-4 overflow-x-auto rounded-lg border border-border">
+    <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+      <caption class="sr-only">Stundenplan {gym.label} — Elements Jiu Jitsu</caption>
+      <thead>
+        <tr class="border-b border-border bg-secondary/60">
+          <th scope="col" class="px-4 py-3 font-display font-semibold tracking-wider uppercase">Tag</th>
+          <th scope="col" class="px-4 py-3 font-display font-semibold tracking-wider uppercase">Klassen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {gym.schedule
+          .filter((day) => day.slots.length > 0)
+          .map((day) => (
+            <tr class="border-b border-border last:border-b-0">
+              <th scope="row" class="w-32 px-4 py-3 align-top font-semibold whitespace-nowrap">
+                {day.day}
+              </th>
+              <td class="px-4 py-3">
+                <ul class="space-y-2">
+                  {day.slots.map((slot) => (
+                    <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <time class="font-mono text-xs whitespace-nowrap text-muted-foreground">{slot.time}</time>
+                      <span class="font-medium">{slot.name}</span>
+                      <span class="text-xs text-muted-foreground">({slot.audience})</span>
+                      {slot.parallel && (
+                        <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">
+                          Parallel
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </td>
+            </tr>
+          ))}
+      </tbody>
+    </table>
+  </div>
+</section>

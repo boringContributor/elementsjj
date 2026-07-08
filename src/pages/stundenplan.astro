@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ScheduleTable from '../components/ScheduleTable.astro';
+import { GYMS } from '../data/schedule';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Stundenplan', href: '/stundenplan' },
+];
+
+const jumpLinks = [
+  { href: '#blue', label: 'Blue Gym' },
+  { href: '#red', label: 'Red Gym' },
+  { href: '#kelheim', label: 'Kelheim' },
+];
+---
+
+<BaseLayout
+  title="Stundenplan — Elements Jiu Jitsu Regensburg & Kelheim"
+  description="Trainingszeiten für BJJ, MMA, Thaiboxen, Grappling und Kindertraining an allen Standorten."
+  breadcrumbs={breadcrumbs}
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <SectionHeading kicker="Trainingszeiten" as="h1">
+      Stundenplan
+      <Fragment slot="sub">
+        <p>
+          Sieben Tage die Woche auf der Matte. Wähle deinen Standort und such dir deine Klasse —
+          Probetraining ist immer kostenlos.
+        </p>
+      </Fragment>
+    </SectionHeading>
+
+    <nav class="mt-8 flex justify-center gap-3" aria-label="Standorte im Stundenplan">
+      {jumpLinks.map((link) => (
+        <a
+          href={link.href}
+          class="rounded-md border border-border px-4 py-2 text-sm font-semibold transition-smooth hover:border-primary hover:text-primary"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="mt-12 space-y-14">
+      {GYMS.map((gym) => (
+        <ScheduleTable gym={gym} />
+      ))}
+    </div>
+
+    <p class="mt-8 text-center text-xs text-muted-foreground">
+      Tipp: Tabelle horizontal scrollen für vollständige Zeiten.
+    </p>
+
+    <div class="mt-14 rounded-lg border border-border bg-card p-8 text-center">
+      <h2 class="font-display text-2xl font-bold uppercase">
+        Erstes Training? <span class="text-primary">Gratis.</span>
+      </h2>
+      <p class="mx-auto mt-3 max-w-md text-muted-foreground">
+        Buche dein kostenloses Probetraining — bring nur bequeme Kleidung mit.
+      </p>
+      <a
+        href="/probetraining"
+        class="gradient-neon shadow-neon mt-6 inline-block rounded-md px-8 py-3 font-semibold text-primary-foreground transition-smooth hover:opacity-90"
+      >
+        Probetraining buchen
+      </a>
+    </div>
+  </section>
+</BaseLayout>

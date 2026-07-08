@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import type { Offer } from '../data/offers';
+
+interface Props {
+  offer: Offer;
+  loading?: 'lazy' | 'eager';
+}
+
+const { offer, loading = 'lazy' } = Astro.props;
+---
+
+<a
+  href={offer.href}
+  class="group overflow-hidden rounded-lg border border-border bg-card transition-smooth hover:-translate-y-1 hover:border-primary/60"
+>
+  <div class="aspect-[4/3] overflow-hidden">
+    <Image
+      src={offer.image}
+      alt={`${offer.name} bei Elements Jiu Jitsu Regensburg`}
+      widths={[400, 640, 960]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      class="h-full w-full object-cover transition-smooth group-hover:scale-105"
+      loading={loading}
+    />
+  </div>
+  <div class="p-5">
+    <h3 class="font-display text-lg font-semibold tracking-wide">{offer.name}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{offer.desc}</p>
+    <p class="mt-3 text-sm font-semibold text-primary">Mehr erfahren →</p>
+  </div>
+</a>

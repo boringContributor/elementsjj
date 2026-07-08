@@ -1,0 +1,123 @@
+---
+import OfferShell from '../../components/OfferShell.astro';
+import BenefitCard from '../../components/BenefitCard.astro';
+import { OFFERS } from '../../data/offers';
+
+const image = OFFERS.find((offer) => offer.slug === 'kindertraining-bjj')!.image;
+---
+
+<OfferShell
+  title="BJJ Kindertraining in Regensburg & Kelheim — Elements Jiu Jitsu"
+  description="Brazilian Jiu Jitsu für Kinder ab 4 Jahren in Regensburg & Kelheim. Fitness, Selbstbewusstsein, Disziplin & Spaß in zwei Altersklassen (Youngling & Padawan). Kostenlose Probestunde."
+  kicker="Kindertraining"
+  heading="BJJ Kindertraining — Brazilian Jiu Jitsu für Kinder bei"
+  headingAccent="Elements Jiu Jitsu"
+  subtitle="Erfolgreiches und spaßiges Brazilian Jiu Jitsu für Kinder in Regensburg & Kelheim — Fitness, Selbstbewusstsein und wertvolle soziale Fähigkeiten."
+  ogImage={image}
+  slug="kindertraining-bjj"
+  equipment={[
+    ['Kleidung:', 'Eine bequeme Sporthose (ohne Taschen/Reißverschlüsse) und ein einfaches T-Shirt. Einen BJJ-Anzug (Gi) braucht Ihr Kind für das Probetraining noch nicht.'],
+    ['Wichtig:', 'Etwas zu trinken, ein kleines Handtuch und gute Laune. Trainiert wird barfuß auf der Matte.'],
+  ]}
+  ctaLabel="Jetzt kostenlose BJJ-Probestunde für Kinder vereinbaren"
+>
+  <section class="space-y-4 leading-relaxed text-muted-foreground">
+    <p>
+      Willkommen beim BJJ Kindertraining! Hier bei Elements Jiu Jitsu bieten wir hochwertiges
+      Brazilian Jiu Jitsu (BJJ) speziell für Kinder an. Unser Programm ist darauf ausgelegt,
+      Kindern eine einzigartige und spannende Möglichkeit zu bieten, diese faszinierende
+      Kampfsportart zu erlernen und dabei ihre körperliche Fitness zu verbessern, ihr
+      Selbstbewusstsein zu stärken und wertvolle soziale Fähigkeiten zu entwickeln.
+    </p>
+    <p>
+      Unser Team von qualifizierten und erfahrenen BJJ-Trainern sorgt dafür, dass die Kinder in
+      einer sicheren und positiven Umgebung trainieren. Wir legen großen Wert auf die individuelle
+      Betreuung jedes Kindes und passen das Training an sein Alter und sein Können an. Egal, ob Ihr
+      Kind Anfänger oder fortgeschrittener BJJ-Schüler ist, unser BJJ Kindertraining bietet eine
+      abwechslungsreiche Mischung aus Techniktraining, Spielen und Übungen, die den Spaß am BJJ
+      fördern und die Fähigkeiten der Kinder verbessern.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Warum ist BJJ für Kinder so großartig?</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Neben den offensichtlichen Vorteilen wie der Verbesserung von Kraft, Ausdauer und
+      Flexibilität bietet BJJ auch zahlreiche weitere Vorteile speziell für Kinder. Durch das
+      Training von BJJ lernen Kinder, Disziplin, Respekt, Teamarbeit und Durchhaltevermögen zu
+      entwickeln. Sie verbessern ihre motorischen Fähigkeiten, ihr Gleichgewicht und ihre
+      Koordination und entwickeln ein besseres Körperbewusstsein. BJJ ist auch eine hervorragende
+      Methode, um das Selbstbewusstsein von Kindern zu stärken, da sie lernen, ihre eigenen
+      Fähigkeiten zu schätzen und mit Herausforderungen umzugehen.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Die Vorteile auf einen Blick</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      <BenefitCard title="Körper & Fitness">
+        Verbesserung von Kraft, Ausdauer, Flexibilität, Koordination, Gleichgewicht und einem
+        ganzheitlichen Körperbewusstsein.
+      </BenefitCard>
+      <BenefitCard title="Selbstbewusstsein">
+        Kinder lernen, ihre eigenen Fähigkeiten zu schätzen, mit Herausforderungen umzugehen und
+        mutig zu sein.
+      </BenefitCard>
+      <BenefitCard title="Soziale Fähigkeiten">
+        Neue Freundschaften, Teamarbeit und Zusammenhalt in einer unterstützenden Gemeinschaft.
+      </BenefitCard>
+      <BenefitCard title="Werte fürs Leben">
+        Disziplin, Respekt, Höflichkeit, Teamgeist und Durchhaltevermögen — auf und neben der
+        Matte.
+      </BenefitCard>
+    </div>
+  </section>
+
+  <section class="space-y-4 leading-relaxed text-muted-foreground">
+    <p>
+      Unser BJJ Kindertraining ist nicht nur für Jungen, sondern auch für Mädchen geeignet. Es ist
+      eine großartige Möglichkeit für Kinder, neue Freunde zu finden und ihre sozialen Fähigkeiten
+      zu verbessern, während sie gemeinsam in einer unterstützenden Umgebung trainieren. Unsere
+      Trainer sind geduldig, engagiert und erfahren im Umgang mit Kindern und sorgen dafür, dass
+      jedes Kind sich wohl fühlt und Spaß beim Training hat.
+    </p>
+    <p>
+      Als erfahrene BJJ-Schule wissen wir, wie wichtig es ist, dass Kinder auch außerhalb des
+      Trainings von BJJ lernen. Daher legen wir großen Wert auf Werte wie Respekt, Höflichkeit und
+      Teamgeist und fördern diese Werte in unserem BJJ Kindertraining. Wir bieten auch regelmäßige
+      Veranstaltungen und Aktivitäten abseits der Matte an, um die Gemeinschaft und das
+      Zusammengehörigkeitsgefühl unserer Kinder zu stärken.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Unsere Altersklassen</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Empfohlenes Mindestalter: 4 Jahre. Sollte Ihr Kind jünger sein, können wir es trotzdem sehr
+      gerne zusammen testen und schauen, ob Ihr Kind individuell Spaß hat und mitmachen kann. Sehr
+      gerne stehen wir hierfür auch beratend zur Verfügung.
+    </p>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-lg border border-border bg-card p-5">
+        <h3 class="font-display text-lg font-bold">Youngling</h3>
+        <p class="text-xs font-semibold tracking-widest text-gold uppercase">4 – 7 Jahre</p>
+        <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Spielerischer Einstieg in die Welt des BJJ – mit Fokus auf Motorik, Körpergefühl und Spaß
+          an der Bewegung.
+        </p>
+      </div>
+      <div class="rounded-lg border border-border bg-card p-5">
+        <h3 class="font-display text-lg font-bold">Padawan</h3>
+        <p class="text-xs font-semibold tracking-widest text-gold uppercase">7 – 12 Jahre</p>
+        <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Vertiefendes Techniktraining, erste echte BJJ-Positionen und Übungen, die
+          Selbstbewusstsein und Disziplin fördern.
+        </p>
+      </div>
+    </div>
+    <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+      Wenn Sie sich nicht sicher sind, welche Gruppe für Ihr Kind besser geeignet ist, kontaktieren
+      Sie uns gerne. Auch hier stehen wir Ihnen beratend zur Seite.
+    </p>
+  </section>
+</OfferShell>

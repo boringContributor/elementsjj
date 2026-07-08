@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import OfferCard from '../components/OfferCard.astro';
+import { OFFERS } from '../data/offers';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Kampfsportangebot', href: '/kampfsportangebote' },
+];
+---
+
+<BaseLayout
+  title="Kampfsportangebot — Elements Jiu Jitsu Regensburg"
+  description="BJJ, MMA, Thai Boxen, Grappling/NoGi und Kindertraining bei EJJ Regensburg."
+  breadcrumbs={breadcrumbs}
+>
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <SectionHeading kicker="Was wir trainieren" as="h1">
+      Unser Kampfsportangebot
+    </SectionHeading>
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {OFFERS.map((offer, index) => (
+        <OfferCard offer={offer} loading={index < 4 ? 'eager' : 'lazy'} />
+      ))}
+    </div>
+    <div class="mt-12 text-center">
+      <a
+        href="/probetraining"
+        class="gradient-neon shadow-neon inline-block rounded-md px-8 py-3 font-semibold text-primary-foreground transition-smooth hover:opacity-90"
+      >
+        Kostenloses Schnuppertraining buchen
+      </a>
+    </div>
+  </section>
+</BaseLayout>

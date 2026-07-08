@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Oswald', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #040a11;
+  --color-foreground: #f6f9fb;
+  --color-card: #09121c;
+  --color-primary: #f52027;
+  --color-primary-dark: #bd001b;
+  --color-primary-foreground: #fcfcfc;
+  --color-secondary: #141b24;
+  --color-muted: #141b24;
+  --color-muted-foreground: #9ea6ae;
+  --color-border: #212a33;
+  --color-gold: #e6ad00;
+  --color-course-blue: #3aacff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background font-sans text-foreground antialiased;
+}
+
+.font-display {
+  letter-spacing: 0.02em;
+}
+
+.gradient-neon {
+  background: linear-gradient(135deg, #f52027, #bd001b);
+}
+
+.shadow-neon {
+  box-shadow: 0 0 40px #f5202773;
+}
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Textinhalte auf Rechtsseiten */
+.prose-legal h2 {
+  @apply font-display mt-10 mb-4 text-xl font-semibold tracking-wide uppercase;
+}
+.prose-legal h3 {
+  @apply mt-6 mb-2 font-semibold;
+}
+.prose-legal p {
+  @apply mb-4 leading-relaxed text-muted-foreground;
+}
+.prose-legal ul {
+  @apply mb-4 list-disc space-y-1 pl-6 text-muted-foreground;
+}
+.prose-legal a {
+  @apply text-primary underline-offset-2 hover:underline;
+}

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SPECIALS, specialWhatsAppUrl } from '../../data/specials';
+import { SITE } from '../../data/site';
+
+export function getStaticPaths() {
+  return SPECIALS.map((special) => ({ params: { slug: special.slug }, props: { special } }));
+}
+
+const { special } = Astro.props;
+const whatsappUrl = specialWhatsAppUrl(special.slug);
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Specials', href: '/spezialitaeten' },
+  { name: special.name, href: `/specials/${special.slug}` },
+];
+
+const isSeminar = special.slug === 'seminare-workshops';
+const corporateBenefits = [
+  ['💪', 'Teamgeist stärken:', 'Gemeinsam auf der Matte entstehen Vertrauen und Zusammenhalt.'],
+  ['🧘', 'Stressabbau:', 'Effektiver Ausgleich zum stressigen Arbeitsalltag.'],
+  ['❤️', 'Gesundheit fördern:', 'Aktive Bewegung, Mobility & mentale Stärke für dein Team.'],
+  ['🥋', 'Einzigartiges Erlebnis:', 'Selbstverteidigung & Kampfsport hautnah erleben.'],
+];
+---
+
+<BaseLayout
+  title={special.title}
+  description={special.metaDescription}
+  ogImage={special.image}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="mx-auto max-w-4xl px-4 pt-6 pb-14 sm:px-6">
+    <header class="mt-4">
+      <p class="font-display text-sm font-semibold tracking-[0.2em] text-primary uppercase">Specials</p>
+      <h1 class="font-display mt-3 text-3xl leading-tight font-bold uppercase sm:text-5xl">
+        {special.name} in <span class="text-primary">Regensburg &amp; Kelheim</span>
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-muted-foreground">{special.desc}</p>
+    </header>
+
+    <div class="mt-12 space-y-12">
+      <section class="space-y-4 leading-relaxed text-muted-foreground">
+        {special.intro.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </section>
+
+      <section class="rounded-lg border border-border bg-card p-6">
+        <h2 class="font-display text-2xl font-bold uppercase">{special.audienceHeading}</h2>
+        <p class="mt-4 leading-relaxed text-muted-foreground">{special.audienceIntro}</p>
+        <ul class="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+          {special.audienceItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-2xl font-bold uppercase">Ablauf, Ausrüstung &amp; Buchung</h2>
+        <div class="mt-4 space-y-4 leading-relaxed text-muted-foreground">
+          {special.processIntro.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        <ul class="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+          {special.processItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      {isSeminar && (
+        <section class="rounded-lg border border-gold/40 bg-card p-6">
+          <h2 class="font-display text-2xl font-bold uppercase">
+            Firmen &amp; <span class="text-gold">Corporate Fitness</span>
+          </h2>
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            Wir bieten exklusive Teambuilding-Seminare, Selbstverteidigungskurse und
+            Kampfsport-Workshops für Firmen aus Regensburg, Kelheim und der gesamten Region an.
+            Diese Formate sind die perfekte Mischung aus aktivem Gesundheits-Angebot,
+            Teambuilding-Erlebnis und mentaler Auszeit vom Büro-Alltag.
+          </p>
+          <ul class="mt-4 space-y-2 text-muted-foreground">
+            {corporateBenefits.map(([emoji, label, text]) => (
+              <li>
+                <span aria-hidden="true">{emoji}</span>
+                <strong class="text-foreground"> {label}</strong> {text}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={SITE.whatsapp.seminar}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-block rounded-md border border-gold px-6 py-3 font-semibold text-gold transition-smooth hover:bg-gold hover:text-background"
+          >
+            Jetzt Firmen-Event anfragen
+          </a>
+        </section>
+      )}
+
+      <section class="rounded-lg border border-border bg-card p-6">
+        <h2 class="font-display text-2xl font-bold uppercase">Termine</h2>
+        <ul class="mt-4 space-y-2 text-muted-foreground">
+          {special.termine.map((line) => (
+            <li>{line}</li>
+          ))}
+        </ul>
+        {special.scheduleLink && (
+          <a href="/stundenplan" class="mt-4 inline-block text-sm font-semibold text-primary transition-smooth hover:opacity-80">
+            Vollständiger Stundenplan →
+          </a>
+        )}
+      </section>
+
+      <div class="text-center">
+        <a
+          href={special.scheduleLink ? '/probetraining' : whatsappUrl}
+          target={special.scheduleLink ? undefined : '_blank'}
+          rel={special.scheduleLink ? undefined : 'noopener noreferrer'}
+          class="gradient-neon shadow-neon inline-block rounded-md px-8 py-3 font-semibold text-primary-foreground transition-smooth hover:opacity-90"
+        >
+          {special.cta.label}
+        </a>
+        <p class="mt-4 text-sm text-muted-foreground">
+          oder direkt per WhatsApp:
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-foreground transition-smooth hover:text-primary">
+            {SITE.phone}
+          </a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

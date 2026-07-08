@@ -1,0 +1,74 @@
+---
+import OfferShell from '../../components/OfferShell.astro';
+import { OFFERS } from '../../data/offers';
+
+const image = OFFERS.find((offer) => offer.slug === 'kindertraining-kickboxen')!.image;
+---
+
+<OfferShell
+  title="Kindertraining Kickboxen in Regensburg & Kelheim — Elements Jiu Jitsu"
+  description="Kickboxen für Kinder ab 4 Jahren in Regensburg & Kelheim. Fitness, Koordination, Disziplin und Selbstbehauptung in zwei Altersstufen (Younglings & Padawans). Kostenlose Probestunde."
+  kicker="Kindertraining"
+  heading="Kindertraining Kickboxen in"
+  headingAccent="Regensburg & Kelheim"
+  subtitle="Auspowern, fokussieren, wachsen — Dynamisches Kickboxtraining mit Werten und Struktur."
+  ogImage={image}
+  slug="kindertraining-kickboxen"
+  equipment={[
+    ['Kleidung:', 'Eine kurze oder lange Sporthose und ein T-Shirt. Trainiert wird barfuß.'],
+    ['Boxhandschuhe:', 'Für das erste Training stellen wir gerne Leihhandschuhe zur Verfügung!'],
+    ['Mitbringen:', 'Ein Handtuch und etwas zu trinken.'],
+  ]}
+  ctaLabel="Jetzt kostenloses Kinder-Kickbox Probetraining vereinbaren"
+>
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Fitness &amp; Koordination im Standkampf</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Unser Kinder-Kickboxtraining bei Elements bringt Bewegung, Action und Struktur perfekt in
+      Einklang. In einem absolut sicheren und kontrollierten Umfeld lernen Kinder die Grundlagen
+      des modernen Kickboxens und Thaiboxens. Unser Fokus liegt hierbei auf dem kontaktlosen bzw.
+      streng kontrollierten Erlernen von Schlag- und Trittkombinationen an Pratzen und Boxsäcken.
+      Es ist das ultimative Ventil, um sich gesund auszupowern, die Reflexe zu schärfen und die
+      Fitness aufs nächste Level zu bringen.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Unsere Altersstufen</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-lg border border-border bg-card p-5">
+        <h3 class="font-display text-lg font-bold">Younglings</h3>
+        <p class="text-xs font-semibold tracking-widest text-gold uppercase">4 – 7 Jahre</p>
+        <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Spielerische Heranführung an schnelle Bewegungen, Koordination und das Erlernen
+          grundlegender Standpositionen. Der Spaß an der Dynamik und der Rhythmus stehen im
+          Vordergrund.
+        </p>
+      </div>
+      <div class="rounded-lg border border-border bg-card p-5">
+        <h3 class="font-display text-lg font-bold">Padawans</h3>
+        <p class="text-xs font-semibold tracking-widest text-gold uppercase">7 – 12 Jahre</p>
+        <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Vertiefung von Schlag- und Kickkombinationen, Fokus auf Schnelligkeit, Präzision und das
+          richtige Distanzgefühl. Das ideale Training, um Disziplin und mentale Stärke aufzubauen.
+        </p>
+      </div>
+    </div>
+    <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+      Hinweis: Empfohlenes Mindestalter ist 4 Jahre. Kommen Sie gerne vorbei und wir probieren
+      gemeinsam aus, ob Ihr Kind Spaß am Training findet.
+    </p>
+  </section>
+
+  <section class="rounded-lg border border-border bg-card p-6">
+    <h2 class="font-display text-2xl font-bold uppercase">Disziplin, Respekt und Selbstbehauptung</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Kickboxen für Kinder schult nicht nur den Körper, sondern vor allem den Geist. Durch die
+      klare Struktur des Trainings lernen die Kinder, sich zu fokussieren und Regeln aufmerksam zu
+      befolgen. Es fördert die Selbstbehauptung im Alltag, verbessert die Haltung und lehrt einen
+      respektvollen Umgang miteinander. Unsere Trainer begleiten jedes Kind geduldig und
+      individuell, sodass Jungen und Mädchen gleichermaßen mit einem breiten Grinsen und neuem
+      Selbstbewusstsein die Matte verlassen.
+    </p>
+  </section>
+</OfferShell>

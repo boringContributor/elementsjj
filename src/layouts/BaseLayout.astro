@@ -1,0 +1,165 @@
+---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/oswald/500.css';
+import '@fontsource/oswald/600.css';
+import '@fontsource/oswald/700.css';
+import '../styles/global.css';
+
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LOCATIONS } from '../data/site';
+import heroImage from '../assets/hero-bjj.jpg';
+import type { ImageMetadata } from 'astro';
+
+interface Breadcrumb {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: ImageMetadata;
+  breadcrumbs?: Breadcrumb[];
+  /** Zusätzliche JSON-LD-Blöcke der jeweiligen Seite */
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const { title, description, ogImage, breadcrumbs, jsonLd = [], noindex = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageOptimized = await getImage({
+  src: ogImage ?? heroImage,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  format: 'jpg',
+});
+const ogImageUrl = new URL(ogImageOptimized.src, Astro.site);
+
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsActivityLocation',
+  '@id': new URL('/#organization', Astro.site).href,
+  name: SITE.name,
+  alternateName: SITE.abbreviation,
+  description:
+    'Kampfsportschule für Brazilian Jiu-Jitsu, MMA, Thaiboxen, Grappling und Kindertraining in Regensburg und Kelheim. Gegründet 2018.',
+  url: Astro.site?.href,
+  logo: new URL('/apple-touch-icon.png', Astro.site).href,
+  image: ogImageUrl.href,
+  telephone: SITE.phone,
+  email: SITE.email,
+  foundingDate: String(SITE.foundingYear),
+  founder: { '@type': 'Person', name: 'Maximilian Alkofer' },
+  priceRange: 'Kostenloses Probetraining',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    postalCode: SITE.address.zip,
+    addressLocality: SITE.address.city,
+    addressCountry: SITE.address.country,
+  },
+  sameAs: [SITE.social.instagram],
+  department: LOCATIONS.map((loc) => ({
+    '@type': 'SportsActivityLocation',
+    name: `${SITE.shortName} — ${loc.name}`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: loc.street,
+      postalCode: loc.zip,
+      addressLocality: loc.city,
+      addressCountry: 'DE',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: loc.coords[0], longitude: loc.coords[1] },
+    telephone: SITE.phone,
+  })),
+};
+
+const breadcrumbLd = breadcrumbs?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: crumb.name,
+        item: new URL(crumb.href, Astro.site).href,
+      })),
+    }
+  : null;
+
+const allJsonLd = [organizationLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.name} />
+    <meta name="theme-color" content="#040a11" />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
+
+    {allJsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-100 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+    >
+      Zum Inhalt springen
+    </a>
+    <Header />
+    <main id="main">
+      {breadcrumbs && breadcrumbs.length > 1 && (
+        <nav aria-label="Breadcrumb" class="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
+          <ol class="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+            {breadcrumbs.map((crumb, index) => (
+              <li class="flex items-center gap-1.5">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {index < breadcrumbs.length - 1 ? (
+                  <a href={crumb.href} class="transition-smooth hover:text-primary">
+                    {crumb.name}
+                  </a>
+                ) : (
+                  <span aria-current="page" class="text-foreground">{crumb.name}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,78 @@
+---
+import OfferShell from '../../components/OfferShell.astro';
+import { OFFERS } from '../../data/offers';
+
+const image = OFFERS.find((offer) => offer.slug === 'mma')!.image;
+
+const pillars = [
+  {
+    title: 'Standkampf',
+    sub: 'Striking',
+    text: 'Präzises Boxen und explosives Thaiboxen. Lerne die perfekte Distanzkontrolle, Schlagkombinationen und effektive Verteidigung.',
+  },
+  {
+    title: 'Übergang',
+    sub: 'Clinch & Takedowns',
+    text: 'Die Kunst aus dem Ringen und Judo. Bestimme selbst, wann der Kampf auf den Boden verlagert wird oder wie du im Clinch dominierst.',
+  },
+  {
+    title: 'Bodenkampf',
+    sub: 'Grappling & Submissions',
+    text: 'Die absolute Kontrolle durch BJJ. Nutze Hebelwirkung und Positionierung, um jeden Gegner am Boden zu kontrollieren und zur Aufgabe zu zwingen.',
+  },
+];
+---
+
+<OfferShell
+  title="Mixed Martial Arts (MMA) in Regensburg & Kelheim — Elements Jiu Jitsu"
+  description="MMA in Regensburg & Kelheim: Boxen, Muay Thai, BJJ & Ringen vereint. Standkampf, Clinch & Bodenkampf in sicherer, professioneller Umgebung. Jetzt Probetraining sichern."
+  kicker="Kampfsportangebot"
+  heading="Mixed Martial Arts (MMA) in"
+  headingAccent="Regensburg & Kelheim"
+  subtitle="Die ultimative Kampfsportfusion — Beherrsche jede Distanz im Stand und am Boden."
+  ogImage={image}
+  slug="mma"
+  equipment={[
+    ['Kleidung:', 'Eine robuste Sporthose (ohne Taschen/Reißverschlüsse) und ein eng anliegendes T-Shirt oder Rashguard.'],
+    ['Ausrüstung (falls vorhanden):', 'MMA-Sparringshandschuhe (4oz oder 7oz), Zahnschutz und Schienbeinschoner. Für den Einstieg helfen wir gerne mit Leihsachen.'],
+    ['Wichtig:', 'Ein Handtuch, genug zu trinken und trainiert wird barfuß auf der Matte.'],
+  ]}
+  ctaLabel="Jetzt kostenloses MMA-Probetraining vereinbaren"
+>
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Was ist Mixed Martial Arts (MMA)?</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      Mixed Martial Arts (MMA) ist die modernste und vielseitigste Kampfsportart der Welt. Sie
+      vereint die effektivsten Techniken aus verschiedenen Disziplinen wie Boxen, Muay Thai,
+      Brazilian Jiu-Jitsu (BJJ) und Ringen zu einem einzigen, fließenden System. Das Besondere am
+      MMA: Kämpfer sind nicht auf ein Regelwerk limitiert, sondern lernen, sich in absolut jeder
+      Kampfsituation perfekt anzupassen – egal ob im dynamischen Standkampf, im packenden Übergang
+      (Clinch &amp; Takedowns) oder in der totalen Kontrolle auf dem Boden.
+    </p>
+  </section>
+
+  <section class="rounded-lg border border-border bg-card p-6">
+    <h2 class="font-display text-2xl font-bold uppercase">Technik, Taktik &amp; Athletik bei Elements</h2>
+    <p class="mt-4 leading-relaxed text-muted-foreground">
+      MMA bei Elements fordert deinen gesamten Körper und Geist. Schläge, Kicks, Knie, Ellenbogen,
+      Würfe und Submission-Griffe greifen hier nahtlos ineinander. Das Training erfordert und
+      fördert neben einer überragenden körperlichen Fitness vor allem taktisches Denken und
+      blitzschnelle Anpassungsfähigkeit. Bei uns lernst du MMA in einer sicheren, professionellen
+      und strukturierten Umgebung, in der die Gesundheit und der gemeinsame Fortschritt der
+      Trainingspartner immer an erster Stelle stehen.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">Die drei Säulen des MMA</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-3">
+      {pillars.map((pillar) => (
+        <div class="rounded-lg border border-border bg-card p-5">
+          <h3 class="font-display text-lg font-bold">{pillar.title}</h3>
+          <p class="text-xs font-semibold tracking-widest text-primary uppercase">{pillar.sub}</p>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</OfferShell>
