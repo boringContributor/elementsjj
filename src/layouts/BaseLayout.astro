@@ -28,9 +28,19 @@ interface Props {
   /** Zusätzliche JSON-LD-Blöcke der jeweiligen Seite */
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
+  /** Mobile Sticky-CTA ausblenden (z. B. auf der Probetraining-Seite selbst) */
+  hideStickyCta?: boolean;
 }
 
-const { title, description, ogImage, breadcrumbs, jsonLd = [], noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  breadcrumbs,
+  jsonLd = [],
+  noindex = false,
+  hideStickyCta = false,
+} = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImageOptimized = await getImage({
@@ -131,7 +141,7 @@ const allJsonLd = [organizationLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...j
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
   </head>
-  <body>
+  <body class:list={[!hideStickyCta && 'pb-16 lg:pb-0']}>
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-100 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -161,5 +171,27 @@ const allJsonLd = [organizationLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...j
       <slot />
     </main>
     <Footer />
+
+    {!hideStickyCta && (
+      <div class="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur lg:hidden">
+        <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5">
+          <a
+            href="/probetraining"
+            class="gradient-neon flex-1 rounded-md px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+          >
+            Gratis Probetraining
+          </a>
+          <a
+            href={SITE.phoneHref}
+            aria-label={`Anrufen: ${SITE.phone}`}
+            class="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-border text-foreground"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    )}
   </body>
 </html>

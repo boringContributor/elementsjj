@@ -53,7 +53,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       </a>
     </nav>
 
-    <details class="relative lg:hidden">
+    <details class="relative lg:hidden" data-mobile-menu>
       <summary
         class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border border-border text-foreground [&::-webkit-details-marker]:hidden"
         aria-label="Menü öffnen"
@@ -92,3 +92,16 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     </details>
   </div>
 </header>
+
+<script>
+  // Mobiles Menü bei Klick außerhalb oder Escape schließen
+  const menu = document.querySelector<HTMLDetailsElement>('[data-mobile-menu]');
+  if (menu) {
+    document.addEventListener('click', (event) => {
+      if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') menu.open = false;
+    });
+  }
+</script>

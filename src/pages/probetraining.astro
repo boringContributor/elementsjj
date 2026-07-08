@@ -21,6 +21,7 @@ const checklist = [
   title="Kostenloses Probetraining — Elements Jiu Jitsu Regensburg"
   description="Buche dein kostenloses Probetraining bei EJJ Regensburg. BJJ, MMA, Thaiboxen — Anfänger willkommen."
   breadcrumbs={breadcrumbs}
+  hideStickyCta
 >
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
     <div class="mx-auto max-w-3xl text-center">
@@ -40,7 +41,8 @@ const checklist = [
         <iframe
           src={SITE.matoolFormUrl}
           title="Probetraining-Anmeldung (Buchungsformular von MATOOL)"
-          class="block h-[max(860px,calc(100dvh-11rem))] w-full"
+          class="block h-[620px] w-full sm:h-[max(820px,calc(100dvh-12rem))]"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           loading="lazy"
         ></iframe>
         <p class="border-t border-border px-4 py-2 text-right text-xs text-muted-foreground">

@@ -31,37 +31,40 @@ const location = LOCATIONS.find((loc) => loc.slug === gym.id);
       </a>
     </p>
   )}
-  <div class="mt-4 overflow-x-auto rounded-lg border border-border">
-    <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+  <div class="mt-4 overflow-hidden rounded-lg border border-border">
+    <table class="w-full border-collapse text-left text-sm">
       <caption class="sr-only">Stundenplan {gym.label} — Elements Jiu Jitsu</caption>
       <thead>
         <tr class="border-b border-border bg-secondary/60">
-          <th scope="col" class="px-4 py-3 font-display font-semibold tracking-wider uppercase">Tag</th>
-          <th scope="col" class="px-4 py-3 font-display font-semibold tracking-wider uppercase">Klassen</th>
+          <th scope="col" class="px-3 py-3 font-display font-semibold tracking-wider uppercase sm:px-4">Tag</th>
+          <th scope="col" class="px-3 py-3 font-display font-semibold tracking-wider uppercase sm:px-4">Klassen</th>
         </tr>
       </thead>
       <tbody>
         {gym.schedule.map((day) => (
           <tr class="border-b border-border last:border-b-0">
-            <th scope="row" class="w-32 px-4 py-3 align-top font-semibold whitespace-nowrap">
-              {day.day}
+            <th scope="row" class="w-14 px-3 py-3 align-top font-semibold sm:w-32 sm:px-4">
+              <span class="sm:hidden">{day.day.slice(0, 2).toUpperCase()}</span>
+              <span class="hidden sm:inline">{day.day}</span>
             </th>
-            <td class="px-4 py-3">
-              <ul class="space-y-2">
+            <td class="px-3 py-3 sm:px-4">
+              <ul class="space-y-2.5">
                 {day.slots.map((slot) => (
-                  <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <li class="grid grid-cols-1 gap-x-3 gap-y-0.5 sm:grid-cols-[7.5rem_1fr] sm:items-baseline">
                     <time class="font-mono text-xs whitespace-nowrap text-muted-foreground">{slot.time}</time>
-                    <span class="font-medium">{slot.name}</span>
-                    {slot.kids && (
-                      <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-gold uppercase">
-                        {slot.kids}
-                      </span>
-                    )}
-                    {slot.parallel && (
-                      <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">
-                        Parallel
-                      </span>
-                    )}
+                    <p class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                      <span class="font-medium">{slot.name}</span>
+                      {slot.kids && (
+                        <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-gold uppercase">
+                          {slot.kids}
+                        </span>
+                      )}
+                      {slot.parallel && (
+                        <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">
+                          Parallel
+                        </span>
+                      )}
+                    </p>
                   </li>
                 ))}
               </ul>

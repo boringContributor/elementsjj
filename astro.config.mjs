@@ -8,6 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://www.elementsjj.de',
   trailingSlash: 'never',
+  // Interne Links im Viewport vorladen — Navigation fühlt sich instant an
+  prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
   integrations: [
     sitemap({
       // noindex-Seiten gehören nicht in die Sitemap
