@@ -49,11 +49,11 @@ body {
 }
 
 .gradient-neon {
-  background: linear-gradient(135deg, #f52027, #bd001b);
+  background: var(--color-primary);
 }
 
 .shadow-neon {
-  box-shadow: 0 0 40px #f5202773;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 0.24);
 }
 
 .transition-smooth {
