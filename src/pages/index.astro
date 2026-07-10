@@ -106,7 +106,7 @@ const websiteLd = {
           alt="Maximilian Alkofer — Inhaber & Headcoach von Elements Jiu Jitsu Regensburg"
           widths={[280, 560]}
           sizes="(max-width: 1024px) 280px, 280px"
-          class="mx-auto aspect-square w-64 rounded-lg object-cover lg:w-full"
+          class="mx-auto aspect-square w-64 rounded-lg object-cover object-top lg:w-full"
           loading="lazy"
         />
         <div>
@@ -137,7 +137,9 @@ const websiteLd = {
       </div>
 
       <ul class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {TRAINERS.slice(0, 12).map((trainer) => (
+        {TRAINERS.filter((trainer) => trainer.name !== HEADCOACH.name)
+          .slice(0, 12)
+          .map((trainer) => (
           <li class="group relative overflow-hidden rounded-lg border border-border">
             <Image
               src={trainer.image}
