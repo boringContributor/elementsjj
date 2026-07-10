@@ -43,7 +43,15 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         rel="noopener noreferrer"
         class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-smooth hover:bg-secondary hover:text-foreground"
       >
-        Shop
+        <span class="inline-flex items-center gap-1">
+          Shop
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 3h7v7" />
+            <path d="M10 14 21 3" />
+            <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+          </svg>
+          <span class="sr-only"> (öffnet in neuem Tab)</span>
+        </span>
       </a>
       <a
         href="/probetraining"
@@ -80,7 +88,15 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
           rel="noopener noreferrer"
           class="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-smooth hover:bg-secondary hover:text-foreground"
         >
-          Shop
+          <span class="inline-flex items-center gap-1">
+            Shop
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 3h7v7" />
+              <path d="M10 14 21 3" />
+              <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+            </svg>
+            <span class="sr-only"> (öffnet in neuem Tab)</span>
+          </span>
         </a>
         <a
           href="/probetraining"
