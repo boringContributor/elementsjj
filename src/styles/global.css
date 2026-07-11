@@ -14,7 +14,7 @@
   --color-muted: #141b24;
   --color-muted-foreground: #9ea6ae;
   --color-border: #212a33;
-  --color-gold: #e6ad00;
+  --color-gold: var(--color-course-blue);
   --color-course-blue: #3aacff;
 }
 

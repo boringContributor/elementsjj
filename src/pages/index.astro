@@ -11,7 +11,7 @@ import { HOME_SCHEDULE_SUMMARY } from '../data/schedule';
 import heroImage from '../assets/hero-bjj.jpg';
 import coachMax from '../assets/coach-max.jpg';
 
-const accentText = { blue: 'text-course-blue', red: 'text-primary', gold: 'text-gold' } as const;
+const accentText = { blue: 'text-course-blue', red: 'text-primary', gold: 'text-course-blue' } as const;
 
 const websiteLd = {
   '@context': 'https://schema.org',
@@ -43,7 +43,7 @@ const websiteLd = {
       <div class="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/35 sm:bg-gradient-to-r sm:from-background sm:via-background/80 sm:to-background/30"></div>
     </div>
     <div class="relative mx-auto flex min-h-[70dvh] max-w-7xl flex-col justify-end px-4 pt-40 pb-16 sm:justify-center sm:py-28 lg:min-h-[75dvh] lg:py-40">
-      <p class="font-display text-sm font-semibold tracking-[0.25em] text-gold uppercase">
+      <p class="font-display text-sm font-semibold tracking-[0.25em] text-course-blue uppercase">
         Regensburg · seit 2018
       </p>
       <h1 class="font-display mt-4 max-w-3xl text-4xl leading-tight font-bold uppercase sm:text-6xl">
@@ -110,7 +110,7 @@ const websiteLd = {
           loading="lazy"
         />
         <div>
-          <p class="font-display text-xs font-semibold tracking-[0.25em] text-gold uppercase">
+          <p class="font-display text-xs font-semibold tracking-[0.25em] text-course-blue uppercase">
             Coach Highlight · Headcoach
           </p>
           <h3 class="font-display mt-2 text-2xl font-bold uppercase">{HEADCOACH.shortName}</h3>
@@ -127,7 +127,7 @@ const websiteLd = {
               href={HEADCOACH.brand.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="font-semibold text-gold transition-smooth hover:opacity-80"
+              class="font-semibold text-course-blue transition-smooth hover:opacity-80"
             >
               {HEADCOACH.brand.label}
             </a>
