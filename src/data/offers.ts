@@ -36,14 +36,14 @@ export const OFFERS: Offer[] = [
     image: img('mma'),
   },
   {
-    name: 'Thai Boxen',
+    name: 'Thaiboxen',
     slug: 'thaiboxen',
     href: '/angebot/thaiboxen',
     desc: 'Muay Thai — die Kunst der acht Gliedmaßen.',
     image: img('thaiboxen'),
   },
   {
-    name: 'BJJ Frauen',
+    name: 'BJJ & Kickboxen Frauen',
     slug: 'bjj-frauen',
     href: '/angebot/bjj-frauen',
     desc: 'Brazilian Jiu Jitsu speziell für Frauen – Technik, Selbstverteidigung und Empowerment in einer starken Gemeinschaft.',
