@@ -1,0 +1,93 @@
+---
+const privacyHref = '/datenschutz';
+---
+
+<div
+  id="cookie-banner"
+  class="fixed right-4 bottom-20 left-4 z-50 hidden rounded-2xl border border-border bg-card/95 p-5 shadow-2xl backdrop-blur md:right-6 md:bottom-6 md:left-auto md:max-w-lg"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Datenschutzeinstellungen"
+  aria-describedby="cookie-banner-description"
+>
+  <div class="space-y-4">
+    <div class="space-y-2">
+      <p class="font-display text-lg font-semibold tracking-wide uppercase">Datenschutzeinstellungen</p>
+      <p id="cookie-banner-description" class="text-sm leading-relaxed text-muted-foreground">
+        Wir setzen auf dieser Website keine Analyse- oder Marketing-Cookies ein. Für die Anmeldung
+        zum Probetraining kann ein externer Dienst von MATOOL eingebunden werden. Dieser wird erst
+        geladen, wenn du externe Inhalte akzeptierst. Deine Auswahl speichern wir lokal in deinem
+        Browser.
+      </p>
+    </div>
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <a href={privacyHref} class="text-sm font-medium text-primary underline-offset-4 hover:underline">
+        Mehr in der Datenschutzerklärung
+      </a>
+      <div class="flex flex-col gap-2 sm:flex-row">
+        <button
+          id="cookie-banner-essential"
+          type="button"
+          class="rounded-md border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition-smooth hover:border-primary hover:text-primary"
+        >
+          Nur notwendige
+        </button>
+        <button
+          id="cookie-banner-accept"
+          type="button"
+          class="gradient-neon rounded-md px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-smooth hover:brightness-110"
+        >
+          Externe Inhalte akzeptieren
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const storageKey = 'elementsjj-cookie-consent';
+  const banner = document.getElementById('cookie-banner');
+  const essentialButton = document.getElementById('cookie-banner-essential');
+  const acceptButton = document.getElementById('cookie-banner-accept');
+
+  const readConsent = () => {
+    try {
+      const rawConsent = window.localStorage.getItem(storageKey);
+      if (!rawConsent) return null;
+      if (rawConsent === 'accepted') return { essential: true, external: false };
+      return JSON.parse(rawConsent);
+    } catch {
+      return null;
+    }
+  };
+
+  const saveConsent = (external) => {
+    const consent = {
+      essential: true,
+      external,
+      updatedAt: new Date().toISOString(),
+    };
+
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(consent));
+    } catch {
+      // Falls localStorage nicht verfügbar ist, wird der Hinweis zumindest für diese Sitzung ausgeblendet.
+    }
+
+    window.dispatchEvent(new CustomEvent('elementsjj:consent-updated', { detail: consent }));
+  };
+
+  if (banner && !readConsent()) {
+    banner.classList.remove('hidden');
+  }
+
+  essentialButton?.addEventListener('click', () => {
+    saveConsent(false);
+    banner?.classList.add('hidden');
+  });
+
+  acceptButton?.addEventListener('click', () => {
+    saveConsent(true);
+    banner?.classList.add('hidden');
+  });
+</script>

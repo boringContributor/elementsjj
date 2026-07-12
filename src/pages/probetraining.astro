@@ -38,13 +38,30 @@ const checklist = [
 
     <div class="mt-12 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
       <div class="overflow-hidden rounded-lg border border-border bg-card">
-        <iframe
-          src={SITE.matoolFormUrl}
-          title="Probetraining-Anmeldung (Buchungsformular von MATOOL)"
-          class="block h-[620px] w-full sm:h-[max(820px,calc(100dvh-12rem))]"
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          loading="lazy"
-        ></iframe>
+        <div
+          id="matool-consent-placeholder"
+          class="flex min-h-[420px] flex-col items-center justify-center gap-4 px-6 py-12 text-center"
+          data-matool-src={SITE.matoolFormUrl}
+        >
+          <div class="max-w-xl space-y-3">
+            <p class="font-display text-xl font-semibold tracking-wide uppercase">Externes Buchungsformular laden</p>
+            <p class="text-sm leading-relaxed text-muted-foreground">
+              Für die Anmeldung zum Probetraining nutzen wir das Buchungsformular von MATOOL. Beim
+              Laden können personenbezogene Daten wie deine IP-Adresse an MATOOL übertragen und
+              dort Cookies oder ähnliche Technologien eingesetzt werden.
+            </p>
+          </div>
+          <button
+            id="matool-consent-button"
+            type="button"
+            class="gradient-neon rounded-md px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-smooth hover:brightness-110"
+          >
+            MATOOL-Formular laden
+          </button>
+          <a href="/datenschutz" class="text-sm font-medium text-primary underline-offset-4 hover:underline">
+            Hinweise zum Datenschutz
+          </a>
+        </div>
         <p class="border-t border-border px-4 py-2 text-right text-xs text-muted-foreground">
           made by
           <a href="https://www.matool.de" target="_blank" rel="noopener noreferrer" class="font-semibold hover:text-primary">MATOOL</a>
@@ -105,3 +122,61 @@ const checklist = [
     </div>
   </section>
 </BaseLayout>
+
+
+<script>
+  const storageKey = 'elementsjj-cookie-consent';
+  const placeholder = document.getElementById('matool-consent-placeholder');
+  const matoolButton = document.getElementById('matool-consent-button');
+
+  const readConsent = () => {
+    try {
+      const rawConsent = window.localStorage.getItem(storageKey);
+      if (!rawConsent) return null;
+      if (rawConsent === 'accepted') return { essential: true, external: false };
+      return JSON.parse(rawConsent);
+    } catch {
+      return null;
+    }
+  };
+
+  const saveExternalConsent = () => {
+    const consent = { essential: true, external: true, updatedAt: new Date().toISOString() };
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(consent));
+    } catch {
+      // Wenn localStorage nicht verfügbar ist, laden wir das Formular nur für den aktuellen Seitenaufruf.
+    }
+    window.dispatchEvent(new CustomEvent('elementsjj:consent-updated', { detail: consent }));
+  };
+
+  const loadMatoolForm = () => {
+    if (!placeholder || placeholder.dataset.loaded === 'true') return;
+    const source = placeholder.dataset.matoolSrc;
+    if (!source) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.src = source;
+    iframe.title = 'Probetraining-Anmeldung (Buchungsformular von MATOOL)';
+    iframe.className = 'block h-[620px] w-full sm:h-[max(820px,calc(100dvh-12rem))]';
+    iframe.sandbox.add('allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups');
+    iframe.loading = 'lazy';
+
+    placeholder.replaceWith(iframe);
+  };
+
+  if (readConsent()?.external) {
+    loadMatoolForm();
+  }
+
+  matoolButton?.addEventListener('click', () => {
+    saveExternalConsent();
+    loadMatoolForm();
+  });
+
+  window.addEventListener('elementsjj:consent-updated', (event) => {
+    if (event instanceof CustomEvent && event.detail?.external) {
+      loadMatoolForm();
+    }
+  });
+</script>
