@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { SITE } from '../data/site';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'FAQ', href: '/faq' },
+];
+
+const faqs = [
+  {
+    question: 'Brauche ich Vorerfahrung für ein Probetraining?',
+    answer:
+      'Nein. Unsere Kurse sind anfängerfreundlich und die Trainer erklären dir die Grundlagen Schritt für Schritt. Sag uns einfach vor der Einheit, dass du zum ersten Mal da bist.',
+  },
+  {
+    question: 'Was soll ich zum Probetraining mitbringen?',
+    answer:
+      'Bequeme Sportkleidung, eine Wasserflasche und ein Handtuch reichen aus. Für BJJ kannst du beim ersten Training ohne Gi starten; wenn ein Gi benötigt wird, helfen wir dir vor Ort weiter.',
+  },
+  {
+    question: 'Ist das Probetraining wirklich kostenlos?',
+    answer:
+      'Ja, dein erstes Probetraining ist kostenlos und unverbindlich. Danach beraten wir dich gerne, welcher Kurs und welche Mitgliedschaft zu deinen Zielen passen.',
+  },
+  {
+    question: 'Welche Einheit eignet sich am besten für Anfänger?',
+    answer:
+      'Du kannst grundsätzlich in jede passende Anfänger- oder reguläre Einheit einsteigen. Wenn du unsicher bist, wähle beim Probetraining deine Wunschdisziplin aus oder kontaktiere uns kurz per WhatsApp.',
+  },
+  {
+    question: 'Kann ich auch trainieren, wenn ich nicht besonders fit bin?',
+    answer:
+      'Ja. Du bestimmst dein Tempo und kannst Pausen machen, wenn du sie brauchst. Viele Mitglieder starten genau deshalb mit Kampfsport: um fitter, beweglicher und selbstbewusster zu werden.',
+  },
+  {
+    question: 'Gibt es Probetrainings für Kinder?',
+    answer:
+      'Ja, wir bieten Kindertraining für verschiedene Altersgruppen an. Bitte buche das Probetraining für dein Kind vorab, damit wir Alter, Standort und passende Trainingszeit einplanen können.',
+  },
+  {
+    question: 'Müssen Eltern beim Kinder-Probetraining dabei sein?',
+    answer:
+      'Beim ersten Training sollte ein Erziehungsberechtigter vor Ort sein. Für Minderjährige muss vor dem Probetraining ein Haftungsausschluss unterschrieben werden.',
+  },
+  {
+    question: 'Kann ich mehrere Sportarten ausprobieren?',
+    answer:
+      'Sprich uns gerne darauf an. Wir helfen dir einzuschätzen, ob BJJ, NoGi/Grappling, MMA, Thaiboxen oder Kindertraining am besten zu dir passt und wie du sinnvoll startest.',
+  },
+  {
+    question: 'Wo findet das Training statt?',
+    answer:
+      'Wir trainieren an unseren Standorten in Regensburg und Kelheim. Die genaue Trainingszeit und den Standort findest du im Stundenplan oder direkt bei der Buchung deines Probetrainings.',
+  },
+  {
+    question: 'Wie melde ich mich zum Probetraining an?',
+    answer:
+      'Am einfachsten buchst du online über die Probetraining-Seite. Wenn du vorher eine Frage hast, erreichst du uns telefonisch oder per WhatsApp.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQ zum Probetraining — Elements Jiu Jitsu Regensburg"
+  description="Antworten auf häufige Fragen vor deinem Probetraining bei Elements Jiu Jitsu: Ausrüstung, Anfänger, Kindertraining, Kosten und Anmeldung."
+  breadcrumbs={breadcrumbs}
+  jsonLd={[faqJsonLd]}
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <SectionHeading kicker="Vor dem ersten Training" as="h1">
+      Häufige Fragen zum Probetraining
+      <Fragment slot="sub">
+        <p>
+          Du willst starten, bist dir aber noch unsicher? Hier findest du die wichtigsten Antworten,
+          bevor du dein kostenloses Probetraining bei uns ausmachst.
+        </p>
+      </Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 space-y-4">
+      {faqs.map((faq) => (
+        <details class="group rounded-lg border border-border bg-card p-6 transition-smooth open:border-primary/60 open:shadow-neon-soft">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-4 font-display text-lg font-semibold uppercase tracking-wide text-foreground [&::-webkit-details-marker]:hidden">
+            <span>{faq.question}</span>
+            <span class="mt-1 text-primary transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-4 leading-relaxed text-muted-foreground">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-14 rounded-lg border border-border bg-card p-8 text-center">
+      <h2 class="font-display text-2xl font-bold uppercase">
+        Noch eine Frage offen?
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-muted-foreground">
+        Schreib uns kurz oder sichere dir direkt deinen Platz fürs kostenlose und unverbindliche Probetraining.
+      </p>
+      <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+        <a
+          href="/probetraining"
+          class="gradient-neon shadow-neon inline-flex items-center justify-center rounded-md px-8 py-3 font-semibold text-primary-foreground transition-smooth hover:opacity-90"
+        >
+          Probetraining buchen
+        </a>
+        <a
+          href={SITE.whatsapp.base}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-md border border-border px-8 py-3 font-semibold transition-smooth hover:border-primary hover:text-primary"
+        >
+          Per WhatsApp fragen
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

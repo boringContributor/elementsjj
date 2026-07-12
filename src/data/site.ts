@@ -17,10 +17,12 @@ export const SITE = {
   },
   social: {
     instagram: 'https://instagram.com/elementsjj',
-    facebook: 'https://facebook.com',
+    facebook: 'https://www.facebook.com/EJJRegensburg/',
+    youtube: 'https://www.youtube.com/@elementsjjregensburgbjj-mu4175',
     smoothcomp: 'https://smoothcomp.com',
   },
   shopUrl: 'https://chokeandchill.com/de',
+  googleReviewsUrl: 'https://www.google.com/search?q=Elements+Jiu+Jitsu+Regensburg+Google+Bewertungen',
   matoolFormUrl: 'https://ext.matool.de/ptformdyn/?hash=1efa6cdbbca0a677',
   whatsapp: {
     base: 'https://wa.me/491717864061',
