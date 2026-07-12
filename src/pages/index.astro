@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import OfferCard from '../components/OfferCard.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { SITE, LOCATIONS } from '../data/site';
 import { OFFERS } from '../data/offers';
@@ -85,6 +86,8 @@ const websiteLd = {
       ))}
     </div>
   </section>
+
+  <GoogleReviews />
 
   <!-- Team -->
   <section class="border-t border-border bg-card/40">
