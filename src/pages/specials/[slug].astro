@@ -9,6 +9,7 @@ export function getStaticPaths() {
 
 const { special } = Astro.props;
 const whatsappUrl = specialWhatsAppUrl(special.slug);
+const locationLabel = special.locationLabel ?? 'Regensburg & Kelheim';
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
@@ -35,7 +36,7 @@ const corporateBenefits = [
     <header class="mt-4">
       <p class="font-display text-sm font-semibold tracking-[0.2em] text-primary uppercase">Specials</p>
       <h1 class="font-display mt-3 text-3xl leading-tight font-bold uppercase sm:text-5xl">
-        {special.name} in <span class="text-primary">Regensburg &amp; Kelheim</span>
+        {special.name} in <span class="text-primary">{locationLabel}</span>
       </h1>
       <p class="mt-5 max-w-2xl text-lg text-muted-foreground">{special.desc}</p>
     </header>

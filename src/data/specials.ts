@@ -31,7 +31,9 @@ export interface Special {
   termine: string[];
   scheduleLink?: boolean;
   cta: { label: string };
+  locationLabel?: string;
 }
+
 
 export const SPECIALS: Special[] = [
   {
@@ -184,7 +186,7 @@ export const SPECIALS: Special[] = [
     name: 'Open Mat',
     desc: 'Freies Training ohne festen Ablauf – die perfekte Möglichkeit für Sparring, Technik-Drills und extra Fortschritt.',
     image: img('openmat'),
-    title: 'Open Mat in Regensburg & Kelheim — Freies Grappling- & BJJ-Training',
+    title: 'Open Mat in Regensburg — Freies Grappling- & BJJ-Training',
     metaDescription:
       'Open Mat im Blue Gym Regensburg: freies BJJ-/No-Gi-Training, Sparring und Technik-Drills. Termine im Stundenplan.',
     intro: [
@@ -216,6 +218,7 @@ export const SPECIALS: Special[] = [
     ],
     scheduleLink: true,
     cta: { label: 'Jetzt Probetraining vereinbaren' },
+    locationLabel: 'Regensburg',
   },
 ];
 
