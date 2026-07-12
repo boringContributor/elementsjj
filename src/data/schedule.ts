@@ -95,33 +95,37 @@ function kidsTag(discipline: string): string | undefined {
   return undefined;
 }
 
-
-export type SportFilter = 'bjj' | 'mma' | 'nogi' | 'kickboxen' | 'kindertraining';
+export type SportFilter = 'bjj' | 'mma' | 'nogi' | 'kickboxen' | 'kindertraining' | 'frauen';
 
 function sportCategories(discipline: string): SportFilter[] {
   const normalized = discipline.toLowerCase();
+  const categories: SportFilter[] = [];
 
   if (normalized.startsWith('youngling') || normalized.startsWith('padawan')) {
     return ['kindertraining'];
   }
 
+  if (normalized.includes('frauen')) {
+    categories.push('frauen');
+  }
+
   if (normalized.includes('brazilian jiu jitsu') || normalized === 'bjj') {
-    return ['bjj'];
+    categories.push('bjj');
   }
 
   if (normalized.includes('mma')) {
-    return ['mma'];
+    categories.push('mma');
   }
 
   if (normalized.includes('nogi') || normalized.includes('grappling')) {
-    return ['nogi'];
+    categories.push('nogi');
   }
 
   if (normalized.includes('kickboxen') || normalized.includes('thaiboxen')) {
-    return ['kickboxen'];
+    categories.push('kickboxen');
   }
 
-  return [];
+  return categories;
 }
 
 function toMinutes(time: string): number {
