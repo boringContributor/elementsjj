@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+const updatedAt = '12. Juli 2026';
+---
+
+<BaseLayout
+  title="Barrierefreiheit — Elements Jiu Jitsu Regensburg"
+  description="Erklärung zur Barrierefreiheit der Website von Elements Jiu Jitsu Regensburg."
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Barrierefreiheit', href: '/barrierefreiheit' },
+  ]}
+  noindex
+>
+  <article class="prose-legal mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <p class="font-display text-sm font-semibold tracking-[0.2em] text-primary uppercase">Rechtliches</p>
+    <h1 class="font-display mt-2 text-4xl font-bold uppercase">
+      Barriere<span class="text-primary">freiheit</span>
+    </h1>
+
+    <p>
+      Elements Jiu Jitsu Regensburg ist bemüht, diese Website im Einklang mit den geltenden
+      Anforderungen an digitale Barrierefreiheit zugänglich zu machen. Maßstab für diese Erklärung
+      sind insbesondere die Anforderungen der Web Content Accessibility Guidelines (WCAG) 2.1 auf
+      Konformitätsstufe AA sowie die in Deutschland geltenden Vorgaben zur digitalen
+      Barrierefreiheit, soweit sie auf dieses Angebot anwendbar sind.
+    </p>
+
+    <h2>Stand der Vereinbarkeit mit den Anforderungen</h2>
+    <p>
+      Diese Website ist nach unserer aktuellen Selbstbewertung weitgehend mit den genannten
+      Anforderungen vereinbar. Die Website wird statisch ausgeliefert, nutzt semantische
+      HTML-Strukturen, eine Tastatur-bedienbare Navigation, einen Skip-Link zum Hauptinhalt,
+      aussagekräftige Alternativtexte für redaktionelle Bilder und eine klare Überschriftenstruktur.
+    </p>
+
+    <h2>Nicht barrierefreie Inhalte</h2>
+    <p>
+      Trotz sorgfältiger Umsetzung können einzelne Inhalte oder Funktionen noch nicht vollständig
+      barrierefrei sein. Aktuell bekannt sind folgende Punkte:
+    </p>
+    <ul>
+      <li>
+        Das eingebundene externe Buchungsformular für Probetrainings wird über einen Drittanbieter
+        bereitgestellt. Auf dessen technische Umsetzung und Barrierefreiheit haben wir nur begrenzt
+        Einfluss.
+      </li>
+      <li>
+        Einzelne externe Links, insbesondere zu Social-Media-Angeboten oder Messenger-Diensten,
+        führen zu Plattformen außerhalb unseres Verantwortungsbereichs.
+      </li>
+      <li>
+        Ältere oder von Dritten bereitgestellte Inhalte können im Einzelfall noch nicht vollständig
+        den aktuellen Barrierefreiheitsanforderungen entsprechen.
+      </li>
+    </ul>
+    <p>
+      Wir prüfen diese Punkte fortlaufend und bemühen uns, erkannte Barrieren nach Möglichkeit zu
+      beseitigen oder barrierearme Alternativen anzubieten.
+    </p>
+
+    <h2>Erstellung dieser Erklärung</h2>
+    <p>
+      Diese Erklärung wurde am {updatedAt} erstellt. Grundlage ist eine Selbstbewertung der Website
+      anhand der vorhandenen Seiten, Komponenten und Inhalte. Die Erklärung wird regelmäßig und bei
+      wesentlichen Änderungen der Website überprüft und aktualisiert.
+    </p>
+
+    <h2>Feedback und Kontakt</h2>
+    <p>
+      Sind Ihnen Barrieren auf dieser Website aufgefallen oder benötigen Sie Informationen in einer
+      zugänglicheren Form? Bitte kontaktieren Sie uns. Wir bemühen uns, Ihre Anfrage zeitnah zu
+      beantworten und eine geeignete Lösung zu finden.
+    </p>
+    <p>
+      Elements Jiu Jitsu Regensburg<br />
+      Maximilian Alkofer<br />
+      {SITE.address.street}<br />
+      {SITE.address.zip} {SITE.address.city}<br />
+      Deutschland
+    </p>
+    <p>
+      Telefon: <a href={SITE.phoneHref}>{SITE.phone}</a><br />
+      E-Mail: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+
+    <h2>Durchsetzungs- und Beschwerdeverfahren</h2>
+    <p>
+      Wenn Sie uns eine Barriere gemeldet haben und innerhalb einer angemessenen Frist keine
+      zufriedenstellende Antwort erhalten, können Sie sich an die zuständige Stelle für
+      Marktüberwachung oder an eine zuständige Schlichtungs- beziehungsweise Durchsetzungsstelle
+      wenden, sofern ein gesetzliches Durchsetzungs- oder Beschwerdeverfahren für dieses Angebot
+      eröffnet ist.
+    </p>
+    <p>
+      Für Verbraucherprodukte und Dienstleistungen nach dem Barrierefreiheitsstärkungsgesetz ist in
+      Deutschland die Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und
+      Dienstleistungen (MLBF) zuständig. Bis zur vollständigen Arbeitsaufnahme können Informationen
+      über die zentrale Anlaufstelle der Länder abgerufen werden:
+      <a href="https://www.bundesfachstelle-barrierefreiheit.de" target="_blank" rel="noopener noreferrer">
+        www.bundesfachstelle-barrierefreiheit.de
+      </a>.
+    </p>
+  </article>
+</BaseLayout>
