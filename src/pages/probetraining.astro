@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactButtons from '../components/ContactButtons.astro';
 import { SITE, LOCATIONS } from '../data/site';
 
 const breadcrumbs = [
@@ -83,22 +84,7 @@ const checklist = [
 
         <div class="rounded-lg border border-border bg-card p-6">
           <h2 class="font-display text-base font-bold tracking-wider uppercase">Direkt kontaktieren</h2>
-          <div class="mt-4 grid gap-3">
-            <a
-              href={SITE.phoneHref}
-              class="inline-flex items-center justify-center rounded-md border border-black bg-black px-5 py-2.5 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              Anrufen
-            </a>
-            <a
-              href={SITE.whatsapp.base}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center rounded-md bg-[#25d366] px-5 py-2.5 text-sm font-semibold text-white transition-smooth hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25d366]"
-            >
-              WhatsApp Chat
-            </a>
-          </div>
+          <ContactButtons class="mt-4" />
         </div>
 
         <div class="rounded-lg border border-border bg-card p-6">

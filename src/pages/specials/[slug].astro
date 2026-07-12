@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactButtons from '../../components/ContactButtons.astro';
 import { SPECIALS, specialWhatsAppUrl } from '../../data/specials';
 import { SITE } from '../../data/site';
 
@@ -95,7 +96,7 @@ const corporateBenefits = [
             href={SITE.whatsapp.seminar}
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-6 inline-block rounded-md border border-course-blue px-6 py-3 font-semibold text-course-blue transition-smooth hover:bg-course-blue hover:text-background"
+            class="mt-6 inline-block rounded-md bg-[#25d366] px-6 py-3 font-semibold text-black transition-smooth hover:brightness-110"
           >
             Jetzt Firmen-Event anfragen
           </a>
@@ -125,12 +126,8 @@ const corporateBenefits = [
         >
           {special.cta.label}
         </a>
-        <p class="mt-4 text-sm text-muted-foreground">
-          oder direkt per WhatsApp:
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-foreground transition-smooth hover:text-primary">
-            {SITE.phone}
-          </a>
-        </p>
+        <p class="mt-4 text-sm text-muted-foreground">oder direkt kontaktieren:</p>
+        <ContactButtons class="mt-4 justify-center" whatsappHref={whatsappUrl} />
       </div>
     </div>
   </article>

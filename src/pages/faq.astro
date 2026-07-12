@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import ContactButtons from '../components/ContactButtons.astro';
 import { SITE } from '../data/site';
 
 const breadcrumbs = [
@@ -100,6 +101,9 @@ const faqJsonLd = {
             <span class="mt-1 text-primary transition-transform group-open:rotate-45" aria-hidden="true">+</span>
           </summary>
           <p class="mt-4 leading-relaxed text-muted-foreground">{faq.answer}</p>
+          {faq.answer.includes('WhatsApp') && (
+            <ContactButtons class="mt-5" />
+          )}
         </details>
       ))}
     </div>
@@ -122,7 +126,7 @@ const faqJsonLd = {
           href={SITE.whatsapp.base}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-md border border-border px-8 py-3 font-semibold transition-smooth hover:border-primary hover:text-primary"
+          class="inline-flex items-center justify-center rounded-md bg-[#25d366] px-8 py-3 font-semibold text-black transition-smooth hover:brightness-110"
         >
           Per WhatsApp fragen
         </a>
