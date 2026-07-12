@@ -4,6 +4,16 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
 import { GYMS } from '../data/schedule';
 
+const sportFilters = [
+  { label: 'Alle', value: 'all' },
+  { label: 'BJJ', value: 'bjj' },
+  { label: 'MMA', value: 'mma' },
+  { label: 'NoGi', value: 'nogi' },
+  { label: 'Kickboxen', value: 'kickboxen' },
+  { label: 'Kindertraining', value: 'kindertraining' },
+  { label: 'Frauen', value: 'frauen' },
+];
+
 const breadcrumbs = [
   { name: 'Home', href: '/' },
   { name: 'Stundenplan', href: '/stundenplan' },
@@ -13,8 +23,8 @@ const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
 ---
 
 <BaseLayout
-  title="Stundenplan — Elements Jiu Jitsu Regensburg"
-  description="Trainingszeiten für BJJ, MMA, Thaiboxen, Grappling und Kindertraining im Blue Gym und Red Gym in Regensburg."
+  title="Stundenplan — Elements Jiu Jitsu Regensburg & Kelheim"
+  description="Trainingszeiten für BJJ, NoGi, MMA, Thaiboxen, Grappling und Kindertraining in Regensburg und Kelheim."
   breadcrumbs={breadcrumbs}
 >
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
@@ -39,6 +49,24 @@ const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
       ))}
     </nav>
 
+    <div class="mt-8 rounded-lg border border-border bg-card p-4" aria-label="Stundenplan nach Sportart filtern">
+      <p class="text-center font-display text-sm font-semibold tracking-[0.2em] text-muted-foreground uppercase">
+        Nach Sportart filtern
+      </p>
+      <div class="mt-4 flex flex-wrap justify-center gap-3" data-schedule-filters>
+        {sportFilters.map((filter) => (
+          <button
+            type="button"
+            class="rounded-md border border-border px-4 py-2 text-sm font-semibold transition-smooth hover:border-primary hover:text-primary aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground"
+            data-schedule-filter={filter.value}
+            aria-pressed={filter.value === 'all' ? 'true' : 'false'}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
     <div class="mt-12 space-y-14">
       {GYMS.map((gym) => (
         <ScheduleTable gym={gym} />
@@ -60,4 +88,40 @@ const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
       </a>
     </div>
   </section>
+  <script>
+    const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-schedule-filter]'));
+    const gyms = Array.from(document.querySelectorAll<HTMLElement>('[data-schedule-gym]'));
+
+    function applyScheduleFilter(activeFilter: string) {
+      filterButtons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.scheduleFilter === activeFilter));
+      });
+
+      gyms.forEach((gym) => {
+        const days = Array.from(gym.querySelectorAll<HTMLElement>('[data-schedule-day]'));
+        let hasVisibleSlot = false;
+
+        days.forEach((day) => {
+          const slots = Array.from(day.querySelectorAll<HTMLElement>('[data-schedule-slot]'));
+          let hasVisibleDaySlot = false;
+
+          slots.forEach((slot) => {
+            const categories = (slot.dataset.sportCategories ?? '').split(' ').filter(Boolean);
+            const isVisible = activeFilter === 'all' || categories.includes(activeFilter);
+            slot.classList.toggle('hidden', !isVisible);
+            hasVisibleDaySlot ||= isVisible;
+          });
+
+          day.classList.toggle('hidden', !hasVisibleDaySlot);
+          hasVisibleSlot ||= hasVisibleDaySlot;
+        });
+
+        gym.querySelector<HTMLElement>('[data-schedule-empty]')?.classList.toggle('hidden', hasVisibleSlot);
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => applyScheduleFilter(button.dataset.scheduleFilter ?? 'all'));
+    });
+  </script>
 </BaseLayout>
