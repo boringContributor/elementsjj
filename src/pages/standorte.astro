@@ -6,6 +6,7 @@ import CtaSection from '../components/CtaSection.astro';
 import { LOCATIONS } from '../data/site';
 import gymBlue from '../assets/gyms/gym-blue.jpg';
 import gymRed from '../assets/gyms/gym-red.jpg';
+import gymKelheim from '../assets/gyms/gym-kelheim.jpg';
 import type { ImageMetadata } from 'astro';
 
 const breadcrumbs = [
@@ -14,7 +15,7 @@ const breadcrumbs = [
 ];
 
 const accentText = { blue: 'text-course-blue', red: 'text-primary', gold: 'text-primary' } as const;
-const gymImages: Record<string, ImageMetadata | undefined> = { blue: gymBlue, red: gymRed };
+const gymImages: Record<string, ImageMetadata | undefined> = { blue: gymBlue, kelheim: gymKelheim, red: gymRed };
 
 function mapsUrl(address: string): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
