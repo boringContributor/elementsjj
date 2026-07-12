@@ -9,7 +9,7 @@ import { SITE, LOCATIONS } from '../data/site';
 import { OFFERS } from '../data/offers';
 import { TRAINERS, HEADCOACH } from '../data/trainers';
 import { HOME_SCHEDULE_SUMMARY } from '../data/schedule';
-import heroImage from '../assets/hero-bjj.jpg';
+import heroImage from '../assets/DSC03973.jpg';
 import coachMax from '../assets/coach-max.jpg';
 
 const accentText = { blue: 'text-course-blue', red: 'text-primary', gold: 'text-course-blue' } as const;
@@ -34,11 +34,14 @@ const websiteLd = {
     <div class="absolute inset-0">
       <Image
         src={heroImage}
-        alt="BJJ-Training bei Elements Jiu Jitsu Regensburg"
-        widths={[768, 1280, 1920]}
+        alt="Brazilian-Jiu-Jitsu-Training bei Elements Jiu Jitsu Regensburg"
+        widths={[640, 960, 1280, 1600, 1920]}
         sizes="100vw"
-        class="h-full w-full object-cover object-[60%_35%]"
+        format="webp"
+        quality={72}
+        class="h-full w-full object-cover object-[55%_45%]"
         loading="eager"
+        decoding="async"
         fetchpriority="high"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/35 sm:bg-gradient-to-r sm:from-background sm:via-background/80 sm:to-background/30"></div>
