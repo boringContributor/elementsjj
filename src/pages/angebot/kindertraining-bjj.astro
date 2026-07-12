@@ -1,6 +1,7 @@
 ---
 import OfferShell from '../../components/OfferShell.astro';
 import BenefitCard from '../../components/BenefitCard.astro';
+import ContactButtons from '../../components/ContactButtons.astro';
 import { OFFERS } from '../../data/offers';
 
 const image = OFFERS.find((offer) => offer.slug === 'kindertraining-bjj')!.image;
@@ -119,5 +120,6 @@ const image = OFFERS.find((offer) => offer.slug === 'kindertraining-bjj')!.image
       Wenn Sie sich nicht sicher sind, welche Gruppe für Ihr Kind besser geeignet ist, kontaktieren
       Sie uns gerne. Auch hier stehen wir Ihnen beratend zur Seite.
     </p>
+    <ContactButtons class="mt-5" />
   </section>
 </OfferShell>
