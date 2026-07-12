@@ -17,7 +17,8 @@ export const SITE = {
   },
   social: {
     instagram: 'https://instagram.com/elementsjj',
-    facebook: 'https://facebook.com',
+    facebook: 'https://www.facebook.com/EJJRegensburg/',
+    youtube: 'https://www.youtube.com/@elementsjjregensburgbjj-mu4175',
     smoothcomp: 'https://smoothcomp.com',
   },
   shopUrl: 'https://chokeandchill.com/de',
