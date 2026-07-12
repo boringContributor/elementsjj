@@ -13,6 +13,14 @@ npm run build      # Produktions-Build nach ./dist
 npm run preview    # Produktions-Build lokal testen
 ```
 
+### Lokale Vorschau der Barrierefreiheitserklärung
+
+Nach `npm run dev` ist die Barrierefreiheitserklärung direkt unter
+`http://localhost:4321/barrierefreiheit` erreichbar. Alternativ kann nach
+`npm run build` mit `npm run preview` die statisch gebaute Seite lokal geprüft
+werden. Der Link erscheint zusätzlich im Footer neben Impressum und
+Datenschutzerklärung.
+
 ## Deployment
 
 Der Build erzeugt rein statisches HTML in `dist/` — deploybar auf jedem Static Host (Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3 …). Kein Server nötig.
