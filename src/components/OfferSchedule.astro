@@ -1,0 +1,78 @@
+---
+import { getOfferSchedule, type OfferScheduleGroup, type SportFilter } from '../data/schedule';
+import { LOCATIONS } from '../data/site';
+
+interface Props {
+  filter: SportFilter;
+  title?: string;
+  disciplineIncludes?: string[];
+}
+
+const { filter, title = 'Trainingszeiten', disciplineIncludes = [] } = Astro.props;
+const groups = getOfferSchedule(filter, disciplineIncludes);
+const locationsBySlug = new Map(LOCATIONS.map((location) => [location.slug, location]));
+const accentClass: Record<string, string> = {
+  red: 'text-primary',
+  blue: 'text-course-blue',
+  kelheim: 'text-primary',
+};
+
+function ariaLabel(group: OfferScheduleGroup) {
+  return `${title} ${group.label}`;
+}
+---
+
+{groups.length > 0 && (
+  <section class="rounded-lg border border-border bg-card p-6">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="font-display text-sm font-semibold tracking-[0.2em] text-primary uppercase">Stundenplan</p>
+        <h2 class="font-display mt-2 text-2xl font-bold uppercase">{title}</h2>
+      </div>
+      <a href="/stundenplan" class="text-sm font-semibold text-primary transition-smooth hover:text-primary/80">
+        Vollständigen Stundenplan ansehen
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-4">
+      {groups.map((group) => {
+        const location = locationsBySlug.get(group.id);
+        return (
+          <article class="rounded-lg border border-border bg-background/60 p-4" aria-label={ariaLabel(group)}>
+            <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+              <h3 class:list={['font-display text-lg font-bold uppercase', accentClass[group.id] ?? 'text-primary']}>
+                {group.label}
+              </h3>
+              {location && (
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm text-muted-foreground transition-smooth hover:text-primary"
+                >
+                  {location.address}
+                </a>
+              )}
+            </div>
+
+            <dl class="mt-4 divide-y divide-border">
+              {group.days.map((day) => (
+                <div class="grid gap-2 py-3 first:pt-0 last:pb-0 sm:grid-cols-[8rem_1fr]">
+                  <dt class="font-display text-sm font-semibold uppercase tracking-wide">{day.day}</dt>
+                  <dd class="space-y-2">
+                    {day.slots.map((slot) => (
+                      <div class="grid gap-x-3 gap-y-0.5 sm:grid-cols-[7.5rem_1fr]">
+                        <time class="font-mono text-xs whitespace-nowrap text-muted-foreground">{slot.time}</time>
+                        <span class="text-sm font-medium">{slot.name}</span>
+                      </div>
+                    ))}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+)}
