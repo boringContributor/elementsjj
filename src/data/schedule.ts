@@ -68,8 +68,8 @@ export const SESSIONS: ClassSession[] = [
   { track: 'Blue', day: 'Sunday', start: '16:00', end: '18:00', discipline: 'Brazilian Jiu Jitsu', level: 'Competition' },
 ];
 
-const DAY_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const DAYS_DE: Record<string, string> = {
+export const DAY_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+export const DAYS_DE: Record<string, string> = {
   Monday: 'Montag',
   Tuesday: 'Dienstag',
   Wednesday: 'Mittwoch',
@@ -205,3 +205,45 @@ export const HOME_SCHEDULE_SUMMARY = TRACKS.map(({ track }) => ({
     return [[DAYS_DE_SHORT[day]!, names.join(' · ')] as [string, string]];
   }),
 }));
+
+
+export interface OfferScheduleSlot {
+  time: string;
+  name: string;
+}
+
+export interface OfferScheduleDay {
+  day: string;
+  slots: OfferScheduleSlot[];
+}
+
+export interface OfferScheduleGroup {
+  id: string;
+  label: string;
+  days: OfferScheduleDay[];
+}
+
+/** Gefilterte Trainingszeiten für die Angebots-Unterseiten. */
+export function getOfferSchedule(filter: SportFilter, disciplineIncludes: string[] = []): OfferScheduleGroup[] {
+  const normalizedIncludes = disciplineIncludes.map((term) => term.toLowerCase());
+  return TRACKS.map(({ track, id, label }) => ({
+    id,
+    label,
+    days: DAY_ORDER.map((day) => {
+      const sessions = sessionsFor(track, day).filter((session) => {
+        const normalizedDiscipline = session.discipline.toLowerCase();
+        return (
+          sportCategories(session.discipline).includes(filter) &&
+          (normalizedIncludes.length === 0 || normalizedIncludes.some((term) => normalizedDiscipline.includes(term)))
+        );
+      });
+      return {
+        day: DAYS_DE[day]!,
+        slots: sessions.map((session) => ({
+          time: `${session.start} – ${session.end}`,
+          name: session.level ? `${session.discipline} – ${session.level}` : session.discipline,
+        })),
+      };
+    }).filter((day) => day.slots.length > 0),
+  })).filter((group) => group.days.length > 0);
+}
