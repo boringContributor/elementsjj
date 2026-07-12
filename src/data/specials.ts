@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro';
+import birthdayImage from '../assets/Geburtstag.jpg';
 import { SITE } from './site';
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -40,7 +41,7 @@ export const SPECIALS: Special[] = [
     slug: 'kampfsport-kindergeburtstag',
     name: 'Kampfsport-Kindergeburtstag',
     desc: 'Unvergessliche 3 Stunden Action auf der Matte – exklusives Training und coole Spiele mit Freunden.',
-    image: img('kindergeburtstag'),
+    image: birthdayImage,
     title: 'Kampfsport-Kindergeburtstag in Regensburg — EJJ',
     metaDescription:
       'Unvergesslicher Kampfsport-Kindergeburtstag in Regensburg: 3 Stunden exklusiv auf der Matte, altersgerechte Spiele, Technik & Teambuilding. Jetzt anfragen.',
