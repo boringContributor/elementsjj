@@ -95,6 +95,35 @@ function kidsTag(discipline: string): string | undefined {
   return undefined;
 }
 
+
+export type SportFilter = 'bjj' | 'mma' | 'nogi' | 'kickboxen' | 'kindertraining';
+
+function sportCategories(discipline: string): SportFilter[] {
+  const normalized = discipline.toLowerCase();
+
+  if (normalized.startsWith('youngling') || normalized.startsWith('padawan')) {
+    return ['kindertraining'];
+  }
+
+  if (normalized.includes('brazilian jiu jitsu') || normalized === 'bjj') {
+    return ['bjj'];
+  }
+
+  if (normalized.includes('mma')) {
+    return ['mma'];
+  }
+
+  if (normalized.includes('nogi') || normalized.includes('grappling')) {
+    return ['nogi'];
+  }
+
+  if (normalized.includes('kickboxen') || normalized.includes('thaiboxen')) {
+    return ['kickboxen'];
+  }
+
+  return [];
+}
+
 function toMinutes(time: string): number {
   const [hours, minutes] = time.split(':').map(Number);
   return (hours ?? 0) * 60 + (minutes ?? 0);
@@ -108,6 +137,7 @@ export interface ScheduleSlot {
   time: string;
   name: string;
   kids?: string | undefined;
+  categories: SportFilter[];
   parallel: boolean;
 }
 
@@ -145,6 +175,7 @@ export const GYMS: GymSchedule[] = TRACKS.map(({ track, id, label }) => ({
         time: `${session.start} – ${session.end}`,
         name: session.level ? `${session.discipline} – ${session.level}` : session.discipline,
         kids: kidsTag(session.discipline),
+        categories: sportCategories(session.discipline),
         parallel: sessions.some((other) => other !== session && overlaps(session, other)),
       })),
     };
