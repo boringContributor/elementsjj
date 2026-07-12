@@ -41,12 +41,12 @@ export const SPECIALS: Special[] = [
     name: 'Kampfsport-Kindergeburtstag',
     desc: 'Unvergessliche 3 Stunden Action auf der Matte – exklusives Training und coole Spiele mit Freunden.',
     image: img('kindergeburtstag'),
-    title: 'Kampfsport-Kindergeburtstag in Regensburg & Kelheim — EJJ',
+    title: 'Kampfsport-Kindergeburtstag in Regensburg — EJJ',
     metaDescription:
-      'Unvergesslicher Kampfsport-Kindergeburtstag in Regensburg & Kelheim: 3 Stunden exklusiv auf der Matte, altersgerechte Spiele, Technik & Teambuilding. Jetzt anfragen.',
+      'Unvergesslicher Kampfsport-Kindergeburtstag in Regensburg: 3 Stunden exklusiv auf der Matte, altersgerechte Spiele, Technik & Teambuilding. Jetzt anfragen.',
     intro: [
       'Ein Kindergeburtstag bei Elements Jiu Jitsu in Regensburg ist mehr als nur eine Feier – er ist ein echtes Erlebnis. Drei Stunden lang gehört unsere Matte exklusiv dem Geburtstagskind und seinen Freundinnen und Freunden. Unter professioneller Anleitung unserer Trainer dürfen die Kinder spielerisch in die Welt von Brazilian Jiu-Jitsu, Kickboxen, Grappling und kindgerechter Selbstverteidigung eintauchen.',
-      'Das Programm ist altersgerecht aufgebaut und wechselt zwischen aktiven Spielen, Technik-Stationen, Teambuilding-Aufgaben und freier Bewegung. So bleibt es während des gesamten Geburtstags abwechslungsreich, spannend und kein Kind wird über- oder unterfordert. Eltern, die einen sportlichen, sicheren und gleichzeitig coolen Geburtstag in Regensburg oder Kelheim suchen, finden bei uns genau das richtige Format.',
+      'Das Programm ist altersgerecht aufgebaut und wechselt zwischen aktiven Spielen, Technik-Stationen, Teambuilding-Aufgaben und freier Bewegung. So bleibt es während des gesamten Geburtstags abwechslungsreich, spannend und kein Kind wird über- oder unterfordert. Eltern, die einen sportlichen, sicheren und gleichzeitig coolen Geburtstag in Regensburg suchen, finden bei uns genau das richtige Format.',
       'Im Vordergrund stehen Spaß, Bewegung und das gemeinsame Erlebnis. Ganz nebenbei lernen die Kinder Respekt, Disziplin und ein gesundes Selbstvertrauen kennen – Werte, die wir in jedem unserer Kurse leben.',
     ],
     audienceHeading: 'Für wen ist der Kampfsport-Geburtstag geeignet?',
@@ -64,12 +64,13 @@ export const SPECIALS: Special[] = [
     ],
     processItems: [
       'Dauer: ca. 3 Stunden exklusiv auf der Matte.',
-      'Standort: Regensburg oder Kelheim, je nach Verfügbarkeit.',
+      'Standort: Regensburg, je nach Verfügbarkeit.',
       'Mitzubringen: Sportkleidung, Getränke und ggf. Kuchen/Snacks.',
       'Buchung: einfach per WhatsApp anfragen, freie Termine werden direkt durchgegeben.',
     ],
     termine: ['Termine nach individueller Vereinbarung.'],
     cta: { label: 'Jetzt Anfrage senden' },
+    locationLabel: 'Regensburg',
   },
   {
     slug: 'seminare-workshops',
