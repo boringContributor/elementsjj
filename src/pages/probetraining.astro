@@ -82,10 +82,23 @@ const checklist = [
         </div>
 
         <div class="rounded-lg border border-border bg-card p-6">
-          <h2 class="font-display text-base font-bold tracking-wider uppercase">Direkt anrufen</h2>
-          <a href={SITE.phoneHref} class="mt-2 inline-block text-lg font-semibold text-primary transition-smooth hover:opacity-80">
-            {SITE.phone}
-          </a>
+          <h2 class="font-display text-base font-bold tracking-wider uppercase">Direkt kontaktieren</h2>
+          <div class="mt-4 grid gap-3">
+            <a
+              href={SITE.phoneHref}
+              class="inline-flex items-center justify-center rounded-md border border-border bg-white px-5 py-2.5 text-sm font-semibold text-black transition-smooth hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Anrufen
+            </a>
+            <a
+              href={SITE.whatsapp.base}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-md bg-[#25d366] px-5 py-2.5 text-sm font-semibold text-white transition-smooth hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25d366]"
+            >
+              WhatsApp Chat
+            </a>
+          </div>
         </div>
 
         <div class="rounded-lg border border-border bg-card p-6">
