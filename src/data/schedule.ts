@@ -3,7 +3,7 @@
  * Alle Ansichten (Stundenplan-Seite, Startseiten-Übersicht) werden daraus abgeleitet.
  */
 
-export type Track = 'Blue' | 'Red';
+export type Track = 'Blue' | 'Red' | 'Kelheim';
 
 export interface ClassSession {
   track: Track;
@@ -28,6 +28,11 @@ export const SESSIONS: ClassSession[] = [
   { track: 'Red', day: 'Friday', start: '17:30', end: '19:00', discipline: 'MMA', level: 'All Levels' },
   { track: 'Red', day: 'Friday', start: '19:00', end: '20:00', discipline: 'Thaiboxen', level: 'Competition' },
   { track: 'Red', day: 'Saturday', start: '13:30', end: '15:00', discipline: 'MMA', level: 'All Levels' },
+
+  { track: 'Kelheim', day: 'Tuesday', start: '18:45', end: '19:45', discipline: 'BJJ', level: 'All Levels' },
+  { track: 'Kelheim', day: 'Tuesday', start: '20:00', end: '21:00', discipline: 'NoGi', level: 'All Levels' },
+  { track: 'Kelheim', day: 'Thursday', start: '18:45', end: '19:45', discipline: 'NoGi', level: 'All Levels' },
+  { track: 'Kelheim', day: 'Thursday', start: '20:00', end: '21:00', discipline: 'BJJ', level: 'All Levels' },
 
   { track: 'Blue', day: 'Monday', start: '08:30', end: '09:30', discipline: 'Grappling', level: 'Fundamentals' },
   { track: 'Blue', day: 'Monday', start: '15:30', end: '16:15', discipline: 'Youngling Brazilian Jiu Jitsu', level: null },
@@ -120,6 +125,7 @@ export interface GymSchedule {
 const TRACKS: { track: Track; id: string; label: string }[] = [
   { track: 'Blue', id: 'blue', label: 'Blue Gym' },
   { track: 'Red', id: 'red', label: 'Red Gym' },
+  { track: 'Kelheim', id: 'kelheim', label: 'Kelheim' },
 ];
 
 function sessionsFor(track: Track, day: string): ClassSession[] {
@@ -155,8 +161,8 @@ function shortName(session: ClassSession): string {
 }
 
 export const HOME_SCHEDULE_SUMMARY = TRACKS.map(({ track }) => ({
-  location: `Regensburg — ${track}`,
-  accent: track.toLowerCase() as 'blue' | 'red',
+  location: track === 'Kelheim' ? 'Kelheim' : `Regensburg — ${track}`,
+  accent: (track === 'Kelheim' ? 'gold' : track.toLowerCase()) as 'blue' | 'red' | 'gold',
   days: DAY_ORDER.flatMap((day) => {
     const sessions = sessionsFor(track, day);
     if (sessions.length === 0) return [];
