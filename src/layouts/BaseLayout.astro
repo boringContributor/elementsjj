@@ -11,6 +11,7 @@ import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import { SITE, LOCATIONS } from '../data/site';
 import heroImage from '../assets/hero-bjj.jpg';
 import type { ImageMetadata } from 'astro';
@@ -171,6 +172,7 @@ const allJsonLd = [organizationLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...j
       <slot />
     </main>
     <Footer />
+    <CookieBanner />
 
     {!hideStickyCta && (
       <div class="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur lg:hidden">

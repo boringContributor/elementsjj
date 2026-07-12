@@ -2,7 +2,7 @@
 
 Statische, SEO-optimierte Website für [Elements Jiu Jitsu Regensburg](https://www.elementsjj.de) — BJJ, MMA, Thaiboxen & Grappling in Regensburg & Kelheim.
 
-Rebuild der ursprünglichen Lovable-Seite (`elementsjiujitsu.lovable.app`) mit vollständiger Inhalts-Parität, gebaut mit [Astro](https://astro.build) + Tailwind CSS 4.
+Gebaut mit [Astro](https://astro.build) + Tailwind CSS 4.
 
 ## Entwicklung
 
