@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { gym } = Astro.props;
-const accent = gym.id === 'red' || gym.id === 'kelheim' ? 'text-primary' : 'text-course-blue';
+const accent = gym.id === 'red' ? 'text-primary' : gym.id === 'kelheim' ? 'text-gold' : 'text-course-blue';
 const location = LOCATIONS.find((loc) => loc.slug === gym.id);
 ---
 

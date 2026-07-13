@@ -19,6 +19,23 @@ const breadcrumbs = [
 ];
 
 const isSeminar = special.slug === 'seminare-workshops';
+
+function escapeHtml(text: string) {
+  return text
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function highlightLocations(text: string) {
+  return escapeHtml(text)
+    .replaceAll('Blue Gym', '<span class="text-course-blue">Blue Gym</span>')
+    .replaceAll('Red Gym', '<span class="text-primary">Red Gym</span>')
+    .replaceAll('Kelheim', '<span class="text-gold">Kelheim</span>');
+}
+
 const corporateBenefits = [
   ['💪', 'Teamgeist stärken:', 'Gemeinsam auf der Matte entstehen Vertrauen und Zusammenhalt.'],
   ['🧘', 'Stressabbau:', 'Effektiver Ausgleich zum stressigen Arbeitsalltag.'],
@@ -37,24 +54,24 @@ const corporateBenefits = [
     <header class="mt-4">
       <p class="font-display text-sm font-semibold tracking-[0.2em] text-primary uppercase">Specials</p>
       <h1 class="font-display mt-3 text-3xl leading-tight font-bold uppercase sm:text-5xl">
-        {special.name} in <span class="text-primary">{locationLabel}</span>
+        {special.name} in <span set:html={highlightLocations(locationLabel)} />
       </h1>
-      <p class="mt-5 max-w-2xl text-lg text-muted-foreground">{special.desc}</p>
+      <p class="mt-5 max-w-2xl text-lg text-muted-foreground" set:html={highlightLocations(special.desc)} />
     </header>
 
     <div class="mt-12 space-y-12">
       <section class="space-y-4 leading-relaxed text-muted-foreground">
         {special.intro.map((paragraph) => (
-          <p>{paragraph}</p>
+          <p set:html={highlightLocations(paragraph)} />
         ))}
       </section>
 
       <section class="rounded-lg border border-border bg-card p-6">
         <h2 class="font-display text-2xl font-bold uppercase">{special.audienceHeading}</h2>
-        <p class="mt-4 leading-relaxed text-muted-foreground">{special.audienceIntro}</p>
+        <p class="mt-4 leading-relaxed text-muted-foreground" set:html={highlightLocations(special.audienceIntro)} />
         <ul class="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
           {special.audienceItems.map((item) => (
-            <li>{item}</li>
+            <li set:html={highlightLocations(item)} />
           ))}
         </ul>
       </section>
@@ -63,12 +80,12 @@ const corporateBenefits = [
         <h2 class="font-display text-2xl font-bold uppercase">Ablauf, Ausrüstung &amp; Buchung</h2>
         <div class="mt-4 space-y-4 leading-relaxed text-muted-foreground">
           {special.processIntro.map((paragraph) => (
-            <p>{paragraph}</p>
+            <p set:html={highlightLocations(paragraph)} />
           ))}
         </div>
         <ul class="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
           {special.processItems.map((item) => (
-            <li>{item}</li>
+            <li set:html={highlightLocations(item)} />
           ))}
         </ul>
       </section>
@@ -107,7 +124,7 @@ const corporateBenefits = [
         <h2 class="font-display text-2xl font-bold uppercase">Termine</h2>
         <ul class="mt-4 space-y-2 text-muted-foreground">
           {special.termine.map((line) => (
-            <li>{line}</li>
+            <li set:html={highlightLocations(line)} />
           ))}
         </ul>
         {special.scheduleLink && (
