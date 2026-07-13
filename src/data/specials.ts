@@ -78,11 +78,11 @@ export const SPECIALS: Special[] = [
     name: 'Seminare & Workshops',
     desc: 'Exklusive Intensiv-Seminare in BJJ, MMA, Thaiboxen und Selbstverteidigung mit maximalem Praxisbezug.',
     image: img('seminare'),
-    title: 'Seminare & Workshops in Regensburg & Kelheim — EJJ',
+    title: 'Seminare & Workshops in Regensburg — EJJ',
     metaDescription:
-      'BJJ-, MMA-, Muay-Thai- und Selbstverteidigungs-Seminare in Regensburg & Kelheim. Inkl. Corporate Fitness und Teambuilding für Firmen.',
+      'BJJ-, MMA-, Muay-Thai- und Selbstverteidigungs-Seminare in Regensburg. Inkl. Corporate Fitness und Teambuilding für Firmen.',
     intro: [
-      'In unseren Seminaren und Workshops in Regensburg und Kelheim geben wir komprimiertes Kampfsport-Wissen weiter, das wir in über zehn Jahren aktiver Trainings- und Wettkampfpraxis gesammelt haben. Ob Brazilian Jiu-Jitsu, No-Gi/Grappling, MMA, Muay Thai oder gezielte Selbstverteidigung – jedes Format ist intensiv, praxisnah und auf konkrete Lernziele ausgerichtet.',
+      'In unseren Seminaren und Workshops in Regensburg geben wir komprimiertes Kampfsport-Wissen weiter, das wir in über zehn Jahren aktiver Trainings- und Wettkampfpraxis gesammelt haben. Ob Brazilian Jiu-Jitsu, No-Gi/Grappling, MMA, Muay Thai oder gezielte Selbstverteidigung – jedes Format ist intensiv, praxisnah und auf konkrete Lernziele ausgerichtet.',
       'Seminare sind ideal, wenn du in kurzer Zeit einen echten Sprung in deinem Können machen möchtest. In der Regel arbeiten wir an einem klaren Themenkomplex (z. B. „Half Guard von A bis Z", „Clinch im Muay Thai" oder „Selbstverteidigung für Frauen"), den wir Schritt für Schritt aufbauen, drillen und live anwenden.',
       'Unsere Workshops richten sich an Mitglieder, Gäste aus anderen Schulen sowie Einsteigerinnen und Einsteiger ohne Vorerfahrung. Termine werden in unseren Kanälen angekündigt – auf Wunsch organisieren wir auch geschlossene Seminare für Gruppen, Vereine oder Firmen.',
     ],
@@ -113,9 +113,9 @@ export const SPECIALS: Special[] = [
     name: 'Privatstunden / Personal Training',
     desc: 'Individuelles 1-zu-1 Training für maximalen technischen Fortschritt und flexible Terminplanung.',
     image: img('privatstunden'),
-    title: 'Privatstunden & Personal Training in Regensburg & Kelheim — EJJ',
+    title: 'Privatstunden & Personal Training in Regensburg — EJJ',
     metaDescription:
-      '1-zu-1 Personal Training in BJJ, MMA, Muay Thai und Selbstverteidigung in Regensburg & Kelheim. Individuelle Termine und maximaler Fortschritt.',
+      '1-zu-1 Personal Training in BJJ, MMA, Muay Thai und Selbstverteidigung in Regensburg. Individuelle Termine und maximaler Fortschritt.',
     intro: [
       'Privatstunden bei Elements Jiu Jitsu sind die schnellste Möglichkeit, dein Können auf das nächste Level zu bringen. In einem 1-zu-1-Setting arbeiten wir genau an deinen Themen – ohne Kompromisse, ohne Wartezeit und in einem Tempo, das exakt zu dir passt. Egal ob du absoluter Anfänger bist, dich auf einen Wettkampf vorbereitest oder eine bestimmte Position auseinandernehmen willst.',
       'Wir buchen Privatstunden flexibel in den Bereichen BJJ (Gi & No-Gi), Grappling, MMA, Muay Thai/Kickboxen, Boxen, Fitness sowie Selbstverteidigung. Auch Paar- oder Kleingruppen-Trainings (2–4 Personen) sind möglich, wenn ihr lieber gemeinsam trainieren möchtet.',
@@ -138,7 +138,7 @@ export const SPECIALS: Special[] = [
     processItems: [
       'Dauer: 60 oder 90 Minuten pro Einheit.',
       'Buchbar als Einzelstunden oder als Paket (z. B. 5er- oder 10er-Block).',
-      'Standort: Regensburg Blue, Regensburg Red oder Kelheim.',
+      'Standort: Regensburg Blue oder Regensburg Red.',
       'Termine flexibel nach Absprache – auch vormittags möglich.',
     ],
     termine: ['Termine nach individueller Vereinbarung.'],
@@ -149,7 +149,7 @@ export const SPECIALS: Special[] = [
     name: 'Fitness & Kondition',
     desc: 'Ganzheitliches Kraft- und Ausdauertraining, speziell optimiert für die Anforderungen im Kampfsport.',
     image: img('fitness'),
-    title: 'Fitness & Kondition für Kampfsport in Regensburg & Kelheim — EJJ',
+    title: 'Fitness & Kondition für Kampfsport in Regensburg — EJJ',
     metaDescription:
       'Funktionelles Kraft-, Kondi- und HIIT-Training für Kampfsportler in Regensburg. Samstags im Blue Gym – auch ohne Vorkenntnisse.',
     intro: [
