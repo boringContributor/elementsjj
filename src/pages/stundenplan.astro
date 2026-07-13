@@ -19,7 +19,12 @@ const breadcrumbs = [
   { name: 'Stundenplan', href: '/stundenplan' },
 ];
 
-const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
+const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label, id: gym.id }));
+const jumpLinkClasses: Record<string, string> = {
+  blue: 'border-course-blue/60 text-course-blue hover:border-course-blue hover:bg-course-blue hover:text-background',
+  red: 'border-primary/60 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground',
+  kelheim: 'border-gold/60 text-gold hover:border-gold hover:bg-gold hover:text-background',
+};
 ---
 
 <BaseLayout
@@ -42,7 +47,10 @@ const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
       {jumpLinks.map((link) => (
         <a
           href={link.href}
-          class="rounded-md border border-border px-4 py-2 text-sm font-semibold transition-smooth hover:border-primary hover:text-primary"
+          class:list={[
+            'rounded-md border px-4 py-2 text-sm font-semibold transition-smooth',
+            jumpLinkClasses[link.id] ?? 'border-border hover:border-primary hover:text-primary',
+          ]}
         >
           {link.label}
         </a>
@@ -78,7 +86,7 @@ const jumpLinks = GYMS.map((gym) => ({ href: `#${gym.id}`, label: gym.label }));
         Erstes Training? <span class="text-primary">Gratis.</span>
       </h2>
       <p class="mx-auto mt-3 max-w-md text-muted-foreground">
-        Buche dein kostenloses Probetraining — bring nur bequeme Kleidung mit.
+        Buche dein kostenloses Probetraining — bring bequeme Kleidung sowie Hausschuhe oder Badeschlappen für die Wege abseits der Matte (z. B. Umkleide) mit.
       </p>
       <a
         href="/probetraining"
