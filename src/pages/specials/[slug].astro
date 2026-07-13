@@ -10,7 +10,7 @@ export function getStaticPaths() {
 
 const { special } = Astro.props;
 const whatsappUrl = specialWhatsAppUrl(special.slug);
-const locationLabel = special.locationLabel ?? 'Regensburg & Kelheim';
+const locationLabel = special.locationLabel ?? 'Regensburg';
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
@@ -97,7 +97,7 @@ const corporateBenefits = [
           </h2>
           <p class="mt-4 leading-relaxed text-muted-foreground">
             Wir bieten exklusive Teambuilding-Seminare, Selbstverteidigungskurse und
-            Kampfsport-Workshops für Firmen aus Regensburg, Kelheim und der gesamten Region an.
+            Kampfsport-Workshops für Firmen aus Regensburg und der gesamten Region an.
             Diese Formate sind die perfekte Mischung aus aktivem Gesundheits-Angebot,
             Teambuilding-Erlebnis und mentaler Auszeit vom Büro-Alltag.
           </p>

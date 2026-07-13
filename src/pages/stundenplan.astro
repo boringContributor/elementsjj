@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
-import { GYMS } from '../data/schedule';
+import { DAY_ORDER, DAYS_DE, GYMS, SESSIONS } from '../data/schedule';
 
 const sportFilters = [
   { label: 'Alle', value: 'all' },
@@ -25,11 +25,26 @@ const jumpLinkClasses: Record<string, string> = {
   red: 'border-primary/60 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground',
   kelheim: 'border-gold/60 text-gold hover:border-gold hover:bg-gold hover:text-background',
 };
+
+const compactScheduleDays = DAY_ORDER.map((day) => ({
+  day,
+  label: DAYS_DE[day]!,
+  sessions: SESSIONS.filter((session) => session.day === day).sort((a, b) => {
+    const byStart = a.start.localeCompare(b.start);
+    return byStart !== 0 ? byStart : a.track.localeCompare(b.track);
+  }),
+})).filter((day) => day.sessions.length > 0);
+
+const trackBadgeClasses: Record<string, string> = {
+  Blue: 'border-course-blue/50 bg-course-blue/10 text-course-blue',
+  Red: 'border-primary/50 bg-primary/10 text-primary',
+  Kelheim: 'border-gold/50 bg-gold/10 text-gold',
+};
 ---
 
 <BaseLayout
   title="Stundenplan — Elements Jiu Jitsu Regensburg & Kelheim"
-  description="Trainingszeiten für BJJ, NoGi, MMA, Thaiboxen, Grappling und Kindertraining in Regensburg und Kelheim."
+  description="Trainingszeiten für BJJ, NoGi, MMA, Thaiboxen, Grappling und Kindertraining in Regensburg sowie Brazilian Jiu Jitsu und NoGi Grappling in Kelheim."
   breadcrumbs={breadcrumbs}
 >
   <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
@@ -95,6 +110,54 @@ const jumpLinkClasses: Record<string, string> = {
         Probetraining buchen
       </a>
     </div>
+
+    <section class="mt-14 rounded-xl border border-border bg-card p-4 shadow-lg sm:p-6" aria-labelledby="kompaktplan-heading">
+      <div class="text-center">
+        <p class="font-display text-sm font-semibold tracking-[0.2em] text-muted-foreground uppercase">
+          Wochenübersicht
+        </p>
+        <h2 id="kompaktplan-heading" class="font-display mt-2 text-2xl font-bold uppercase">
+          Alle Einheiten auf einen Blick
+        </h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
+          Kompakter Stundenplan im Schulplan-Stil: alle Kurse nach Wochentagen sortiert, inklusive Standort.
+          In Kelheim finden ausschließlich Brazilian Jiu Jitsu und NoGi Grappling statt.
+        </p>
+      </div>
+
+      <div class="mt-6 overflow-x-auto rounded-lg border border-border">
+        <div class="grid min-w-[980px] grid-cols-7 divide-x divide-border bg-background/60">
+          {compactScheduleDays.map((day) => (
+            <article class="flex min-h-full flex-col">
+              <h3 class="border-b border-border bg-secondary/70 px-3 py-3 text-center font-display text-sm font-bold tracking-wider uppercase">
+                {day.label}
+              </h3>
+              <div class="flex flex-1 flex-col gap-2 p-2">
+                {day.sessions.map((session) => (
+                  <div class="rounded-md border border-border bg-card/80 p-2 text-xs">
+                    <div class="flex items-center justify-between gap-2">
+                      <time class="font-mono font-semibold text-foreground">
+                        {session.start}–{session.end}
+                      </time>
+                      <span class:list={[
+                        'shrink-0 rounded border px-1.5 py-0.5 text-[10px] font-semibold uppercase',
+                        trackBadgeClasses[session.track],
+                      ]}>
+                        {session.track}
+                      </span>
+                    </div>
+                    <p class="mt-1 font-semibold leading-snug">{session.discipline}</p>
+                    {session.level && (
+                      <p class="mt-0.5 text-[11px] leading-snug text-muted-foreground">{session.level}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   </section>
   <script>
     const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-schedule-filter]'));
