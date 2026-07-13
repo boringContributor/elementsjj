@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Haftungsausschluss — Elements Jiu Jitsu Regensburg"
+  description="Haftungsausschluss und Teilnahmeerklärung für Elements Jiu Jitsu Regensburg."
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Haftungsausschluss', href: '/haftungsausschluss' },
+  ]}
+  noindex
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="font-display text-sm font-semibold tracking-[0.2em] text-primary uppercase">
+        Teilnahmeerklärung
+      </p>
+      <h1 class="font-display mt-2 text-4xl font-bold uppercase sm:text-5xl">
+        Haftungs<span class="text-primary">ausschluss</span>
+      </h1>
+      <p class="mt-4 text-lg text-muted-foreground">
+        Bitte fülle das folgende Formular vollständig aus, bevor du am Training teilnimmst.
+      </p>
+    </div>
+
+    <div class="mt-10 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-xl sm:p-6">
+      <script
+        type="text/javascript"
+        defer
+        src="https://form.123formbuilder.com/embed/6388127.js"
+        data-role="form"
+        data-default-width="800px"
+        data-custom-vars="hasEmbedFormStyle=1"
+      ></script>
+    </div>
+  </section>
+</BaseLayout>
