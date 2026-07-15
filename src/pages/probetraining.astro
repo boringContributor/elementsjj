@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactButtons from '../components/ContactButtons.astro';
 import { SITE, LOCATIONS } from '../data/site';
+import { PROBETRAINING_FAQS, faqJsonLd } from '../data/faqs';
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
@@ -9,6 +10,8 @@ const breadcrumbs = [
 ];
 
 const accentText = { blue: 'text-course-blue', red: 'text-primary', gold: 'text-gold' } as const;
+
+const probetrainingFaqLd = faqJsonLd(PROBETRAINING_FAQS);
 
 const checklist = [
   'Sportkleidung (kurze Hose, T-Shirt)',
@@ -23,6 +26,8 @@ const checklist = [
   title="Kostenloses Probetraining — Elements Jiu Jitsu Regensburg"
   description="Buche dein kostenloses Probetraining bei EJJ Regensburg. BJJ, MMA, Thaiboxen — Anfänger willkommen."
   breadcrumbs={breadcrumbs}
+  jsonLd={[probetrainingFaqLd]}
+  keywords={['Probetraining Kampfsport Regensburg', 'kostenloses BJJ Probetraining', 'MMA Probetraining Regensburg', 'Thaiboxen Probetraining Regensburg']}
   hideStickyCta
 >
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">

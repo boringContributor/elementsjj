@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.elementsjj.de/sitemap-index.xml
+LLMs: https://www.elementsjj.de/llms.txt
