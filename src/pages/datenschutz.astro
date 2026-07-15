@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+
+const updatedAt = '15. Juli 2026';
 ---
 
 <BaseLayout
@@ -17,6 +19,8 @@ import { SITE } from '../data/site';
     <h1 class="font-display mt-2 text-4xl font-bold uppercase">
       Daten<span class="text-primary">schutz</span>
     </h1>
+
+    <p class="mt-4 text-sm text-muted-foreground">Stand: {updatedAt}</p>
 
     <h2>1. Datenschutz auf einen Blick</h2>
     <h3>Allgemeine Hinweise</h3>
@@ -62,7 +66,7 @@ import { SITE } from '../data/site';
       widerrufen. Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
     </p>
 
-    <h2>2. Hosting und Bereitstellung der Website</h2>
+    <h2>2. Hosting, Sicherheit und Bereitstellung der Website</h2>
     <p>
       Beim Aufruf dieser Website werden automatisch Server-Logfiles durch die Infrastruktur des
       Hosting-Anbieters erfasst. Diese Daten sind technisch erforderlich, um die Webanwendung
@@ -78,7 +82,15 @@ import { SITE } from '../data/site';
     <p>
       Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO
       (berechtigtes Interesse an einer fehlerfreien Bereitstellung und der IT-Sicherheit unseres
-      Online-Angebots).
+      Online-Angebots). Die Logdaten werden nur so lange gespeichert, wie dies für die genannten
+      Zwecke erforderlich ist; konkrete Speicherfristen hängen vom eingesetzten Hosting-Anbieter ab.
+    </p>
+    <p>
+      Diese Website wird verschlüsselt per HTTPS ausgeliefert. Dadurch werden Daten, die zwischen
+      Ihrem Browser und der Website übertragen werden, gegen unbefugtes Mitlesen geschützt.
+      Soweit Hosting- oder technische Dienstleister personenbezogene Daten in unserem Auftrag
+      verarbeiten, setzen wir diese auf Grundlage eines Vertrags zur Auftragsverarbeitung nach
+      Art. 28 DSGVO ein.
     </p>
 
     <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
@@ -104,6 +116,22 @@ import { SITE } from '../data/site';
       sei denn, es stehen gesetzliche Aufbewahrungsfristen (z. B. steuerliche oder vertragliche
       Fristen bei einer anschließenden Mitgliedschaft) entgegen.
     </p>
+    <h3>Datenschutzbeauftragter</h3>
+    <p>
+      Für Elements Jiu Jitsu Regensburg besteht nach aktueller Einschätzung keine Pflicht zur
+      Benennung eines Datenschutzbeauftragten. Für Datenschutzanfragen können Sie sich jederzeit an
+      die oben genannte verantwortliche Stelle wenden.
+    </p>
+    <h3>Empfänger und Drittlandübermittlungen</h3>
+    <p>
+      Personenbezogene Daten werden nur an Empfänger weitergegeben, wenn dies für die Bereitstellung
+      der Website, die Bearbeitung Ihrer Anfrage, die Organisation des Trainingsbetriebs, zur
+      Erfüllung rechtlicher Pflichten oder nach Ihrer Einwilligung erforderlich ist. Bei einzelnen
+      externen Diensten kann eine Übermittlung in Länder außerhalb der Europäischen Union bzw. des
+      Europäischen Wirtschaftsraums nicht ausgeschlossen werden. In diesen Fällen achten wir, soweit
+      wir Einfluss darauf haben, auf geeignete Garantien wie EU-Standardvertragsklauseln oder einen
+      Angemessenheitsbeschluss.
+    </p>
     <h3>Gesetzliche Rechte der Nutzer (nach DSGVO)</h3>
     <p>Sie haben nach den geltenden Bestimmungen das Recht auf:</p>
     <ul>
@@ -112,9 +140,16 @@ import { SITE } from '../data/site';
       <li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO)</li>
       <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
       <li>Datenübertragbarkeit in einem strukturierten Format (Art. 20 DSGVO)</li>
+      <li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21 DSGVO)</li>
       <li>Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
       <li>Beschwerde bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO)</li>
     </ul>
+    <p>
+      Zuständige Aufsichtsbehörde in Bayern ist grundsätzlich das Bayerische Landesamt für
+      Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach,
+      <a href="https://www.lda.bayern.de" target="_blank" rel="noopener noreferrer">www.lda.bayern.de</a>.
+      Sie können sich jedoch auch an jede andere zuständige Datenschutzaufsichtsbehörde wenden.
+    </p>
 
     <h2>4. Drittservices und externe Formulare / Kontaktkanäle</h2>
     <h3>MATOOL Buchungs-Widget (Probetraining)</h3>
@@ -142,8 +177,10 @@ import { SITE } from '../data/site';
     <h3>123FormBuilder Haftungsausschluss-Formular</h3>
     <p>
       Für die digitale Teilnahmeerklärung bzw. den Haftungsausschluss binden wir ein externes
-      Formular des Dienstes 123FormBuilder ein. Das Formular wird erst geladen, wenn Sie externe
-      Inhalte akzeptieren oder den Ladebutton auf der Haftungsausschluss-Seite aktiv betätigen.
+      Formular des Dienstes 123FormBuilder, 123FormBuilder S.R.L., Tudor Vladimirescu Street 10,
+      Building 3, 6th floor, Timișoara 300195, Rumänien, ein. Das Formular wird erst geladen, wenn
+      Sie externe Inhalte akzeptieren oder den Ladebutton auf der Haftungsausschluss-Seite aktiv
+      betätigen.
     </p>
     <p>
       Beim Laden und bei der Nutzung des Formulars können personenbezogene Daten wie Ihre
@@ -202,8 +239,10 @@ import { SITE } from '../data/site';
     <h3>Cookies, Local Storage und externe Inhalte</h3>
     <p>
       Diese Website setzt nach aktuellem Stand keine eigenen Analyse- oder Marketing-Cookies ein.
-      Ihre Datenschutzauswahl wird ausschließlich im Local Storage Ihres Browsers unter dem
-      Schlüssel <code>elementsjj-cookie-consent</code> gespeichert. Diese Speicherung ist erforderlich,
+      Die Schriften dieser Website werden lokal ausgeliefert; es findet hierfür keine Verbindung zu
+      Google Fonts oder anderen externen Schriftanbieter-Servern statt. Ihre Datenschutzauswahl wird
+      ausschließlich im Local Storage Ihres Browsers unter dem Schlüssel
+      <code>elementsjj-cookie-consent</code> gespeichert. Diese Speicherung ist erforderlich,
       damit der Hinweis nicht bei jedem Seitenaufruf erneut angezeigt wird. Rechtsgrundlage ist
       Art. 6 Abs. 1 lit. f DSGVO in Verbindung mit § 25 Abs. 2 Nr. 2 TDDDG.
     </p>
@@ -218,7 +257,9 @@ import { SITE } from '../data/site';
     <p>
       Sie können Ihre Auswahl jederzeit ändern, indem Sie den Local-Storage-Eintrag
       <code>elementsjj-cookie-consent</code> in den Browser-Einstellungen löschen oder die Website in
-      einem privaten Fenster erneut aufrufen.
+      einem privaten Fenster erneut aufrufen. Wenn Sie externe Inhalte bereits akzeptiert haben,
+      wirkt ein Widerruf nur für künftige Ladevorgänge; bereits geladene Drittanbieter-Inhalte
+      werden dadurch nicht rückwirkend entladen.
     </p>
   </article>
 </BaseLayout>
