@@ -9,6 +9,7 @@ import { SITE, LOCATIONS } from '../data/site';
 import { OFFERS } from '../data/offers';
 import { TRAINERS, HEADCOACH } from '../data/trainers';
 import { HOME_SCHEDULE_SUMMARY } from '../data/schedule';
+import { PROBETRAINING_FAQS, faqJsonLd } from '../data/faqs';
 import heroImage from '../assets/DSC03973.jpg';
 import coachMax from '../assets/coach-max.jpg';
 
@@ -21,12 +22,39 @@ const websiteLd = {
   url: Astro.site?.href,
   inLanguage: 'de-DE',
 };
+
+const offerCatalogLd = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'Kampfsportangebote von Elements Jiu Jitsu',
+  itemListElement: OFFERS.map((offer) => ({
+    '@type': 'Offer',
+    name: offer.name,
+    description: offer.desc,
+    url: new URL(offer.href, Astro.site).href,
+    availability: 'https://schema.org/InStock',
+  })),
+};
+
+const homeFaqs = PROBETRAINING_FAQS.slice(0, 5);
+const homeFaqLd = faqJsonLd(homeFaqs);
 ---
 
 <BaseLayout
   title="Elements Jiu Jitsu Regensburg — BJJ, MMA & Thaiboxen"
   description={SITE.description}
-  jsonLd={[websiteLd]}
+  jsonLd={[websiteLd, offerCatalogLd, homeFaqLd]}
+  keywords={[
+    'BJJ Regensburg',
+    'Brazilian Jiu Jitsu Regensburg',
+    'MMA Regensburg',
+    'Thaiboxen Regensburg',
+    'Kickboxen Regensburg',
+    'Grappling Regensburg',
+    'NoGi Kelheim',
+    'Kindertraining Kampfsport Regensburg',
+    'Probetraining Kampfsport Regensburg',
+  ]}
   hideStickyCta
 >
   <!-- Hero -->
@@ -87,6 +115,33 @@ const websiteLd = {
       {OFFERS.map((offer) => (
         <OfferCard offer={offer} />
       ))}
+    </div>
+  </section>
+
+
+  <!-- KI- & Suchmaschinen-Zusammenfassung -->
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+      <p class="font-display text-sm font-semibold tracking-[0.2em] text-course-blue uppercase">Kurzüberblick</p>
+      <h2 class="font-display mt-2 text-2xl font-bold uppercase">Elements Jiu Jitsu auf einen Blick</h2>
+      <dl class="mt-6 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <dt class="font-semibold text-foreground">Sportarten</dt>
+          <dd class="mt-1 text-muted-foreground">BJJ, MMA, Thaiboxen/Kickboxen, NoGi Grappling, Frauenkurse und Kindertraining.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-foreground">Standorte</dt>
+          <dd class="mt-1 text-muted-foreground">Regensburg Innenstadt und Kelheim Sportinsel.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-foreground">Geeignet für</dt>
+          <dd class="mt-1 text-muted-foreground">Anfänger, Wiedereinsteiger, Kinder, Frauen, Hobby-Sportler und Wettkämpfer.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-foreground">Start</dt>
+          <dd class="mt-1 text-muted-foreground">Kostenloses, unverbindliches Probetraining online buchen.</dd>
+        </div>
+      </dl>
     </div>
   </section>
 

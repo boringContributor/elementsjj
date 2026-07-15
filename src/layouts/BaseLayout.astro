@@ -29,6 +29,7 @@ interface Props {
   /** Zusätzliche JSON-LD-Blöcke der jeweiligen Seite */
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
+  keywords?: string[];
   /** Mobile Sticky-CTA ausblenden (z. B. auf der Probetraining-Seite selbst) */
   hideStickyCta?: boolean;
 }
@@ -40,6 +41,7 @@ const {
   breadcrumbs,
   jsonLd = [],
   noindex = false,
+  keywords = [],
   hideStickyCta = false,
 } = Astro.props;
 
@@ -76,7 +78,22 @@ const organizationLd = {
     addressLocality: SITE.address.city,
     addressCountry: SITE.address.country,
   },
-  sameAs: [SITE.social.instagram],
+  sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.youtube],
+  areaServed: [
+    { '@type': 'City', name: 'Regensburg' },
+    { '@type': 'City', name: 'Kelheim' },
+  ],
+  knowsAbout: [
+    'Brazilian Jiu-Jitsu',
+    'BJJ',
+    'MMA',
+    'Mixed Martial Arts',
+    'Thaiboxen',
+    'Kickboxen',
+    'NoGi Grappling',
+    'Kindertraining',
+    'Selbstverteidigung',
+  ],
   department: LOCATIONS.map((loc) => ({
     '@type': 'SportsActivityLocation',
     name: `${SITE.shortName} — ${loc.name}`,
@@ -116,12 +133,14 @@ const allJsonLd = [organizationLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...j
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={SITE.name} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <meta name="theme-color" content="#040a11" />
     <link rel="canonical" href={canonical.href} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
