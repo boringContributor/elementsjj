@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.elementsjj.de/sitemap-index.xml
-LLMs: https://www.elementsjj.de/llms.txt
+Sitemap: https://www.elementsjiujitsu.de/sitemap-index.xml
+LLMs: https://www.elementsjiujitsu.de/llms.txt
