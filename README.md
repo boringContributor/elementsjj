@@ -1,6 +1,6 @@
 # Elements Jiu Jitsu Regensburg
 
-Statische, SEO-optimierte Website für [Elements Jiu Jitsu Regensburg](https://www.elementsjj.de) — BJJ, MMA, Thaiboxen & Grappling in Regensburg & Kelheim.
+Statische, SEO-optimierte Website für [Elements Jiu Jitsu Regensburg](https://www.elementsjiujitsu.de) — BJJ, MMA, Thaiboxen & Grappling in Regensburg & Kelheim.
 
 Gebaut mit [Astro](https://astro.build) + Tailwind CSS 4.
 
@@ -27,7 +27,7 @@ Der Build erzeugt rein statisches HTML in `dist/` — deploybar auf jedem Static
 
 **Wichtig vor dem Go-Live:**
 
-1. **Domain setzen:** `site` in `astro.config.mjs` auf die finale Domain anpassen (aktuell `https://www.elementsjj.de`). Davon hängen canonical URLs, Open-Graph-URLs, `sitemap-index.xml` und `robots.txt` ab (die Sitemap-URL in `public/robots.txt` ebenfalls anpassen).
+1. **Domain setzen:** `site` in `astro.config.mjs` auf die finale Domain anpassen (aktuell `https://www.elementsjiujitsu.de`). Davon hängen canonical URLs, Open-Graph-URLs, `sitemap-index.xml` und `robots.txt` ab (die Sitemap-URL in `public/robots.txt` ebenfalls anpassen).
 2. **Impressum/Datenschutz prüfen:** Die Website-URL im Impressum wird automatisch aus der `site`-Config übernommen. Der Hosting-Abschnitt in der Datenschutzerklärung ist bewusst anbieterneutral formuliert — nach Wahl des Hosters ggf. konkretisieren (der ursprüngliche Text nannte Lovable als Hoster).
 3. **Google Search Console:** Nach dem Deploy die Sitemap (`/sitemap-index.xml`) einreichen.
 

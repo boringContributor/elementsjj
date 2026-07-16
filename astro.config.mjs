@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // TODO: Auf die finale Domain anpassen, sobald das Hosting steht.
 // Alle canonical URLs, og:url, sitemap & robots.txt leiten sich hiervon ab.
 export default defineConfig({
-  site: 'https://www.elementsjj.de',
+  site: 'https://www.elementsjiujitsu.de',
   trailingSlash: 'never',
   // Interne Links im Viewport vorladen — Navigation fühlt sich instant an
   prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
