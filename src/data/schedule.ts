@@ -95,7 +95,7 @@ function kidsTag(discipline: string): string | undefined {
   return undefined;
 }
 
-export type SportFilter = 'bjj' | 'mma' | 'nogi' | 'kickboxen' | 'kindertraining' | 'frauen';
+export type SportFilter = 'bjj' | 'mma' | 'nogi' | 'grappling' | 'kickboxen' | 'kindertraining' | 'frauen';
 
 function sportCategories(discipline: string): SportFilter[] {
   const normalized = discipline.toLowerCase();
@@ -117,8 +117,12 @@ function sportCategories(discipline: string): SportFilter[] {
     categories.push('mma');
   }
 
-  if (normalized.includes('nogi') || normalized.includes('grappling')) {
+  if (normalized.includes('nogi')) {
     categories.push('nogi');
+  }
+
+  if (normalized.includes('grappling')) {
+    categories.push('grappling', 'nogi');
   }
 
   if (normalized.includes('kickboxen') || normalized.includes('thaiboxen')) {
