@@ -53,7 +53,7 @@ export const TRAINERS: Trainer[] = [
   { name: 'Julia Radeczky', image: img('julia-radeczky.png'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
   { name: 'Arian Emini', image: img('arian-emini.png'), tags: ['Kids-Kickboxen'] },
   { name: 'Alexandra Hammerl', image: img('alexandra-hammerl.jpg'), tags: ['Frauen-BJJ','BJJ','Grappling'] },
-  { name: 'Maximilian Köppl', image: img('maximilian-koeppl.jpg'), tags: ['BJJ','Grappling'] },
+  { name: 'Maximilian Köppl', image: img('maximilian-koeppl.jpg'), tags: ['BJJ','Grappling','Kelheim'] },
   { name: 'Lea Smolarczyk', image: img('lea-smolarczyk.jpg'), tags: ['Frauen-BJJ','BJJ'] },
   { name: 'Nico Sperger', image: img('nico-sperger.jpg'), tags: ['BJJ','Grappling'] },
   { name: 'Stefan Kuhn', image: img('stefan-kuhn.jpg'), tags: ['Grappling'] },
