@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro';
+import openMatImage from '../assets/specials/openmat.jpg';
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/offers/*.jpg',
@@ -14,7 +15,7 @@ function img(slug: string): ImageMetadata {
 export interface Offer {
   name: string;
   slug: string;
-  /** Eigene Detailseite unter /angebot/[slug]; Schnuppertraining verlinkt auf /probetraining */
+  /** Detailseite des Angebots */
   href: string;
   desc: string;
   image: ImageMetadata;
@@ -71,10 +72,10 @@ export const OFFERS: Offer[] = [
     image: img('kindertraining-kickboxen'),
   },
   {
-    name: 'Schnuppertraining',
-    slug: 'schnuppertraining',
-    href: '/probetraining',
-    desc: 'Kostenloses Probetraining für alle.',
-    image: img('schnuppertraining'),
+    name: 'Open Mat',
+    slug: 'open-mat',
+    href: '/specials/open-mat',
+    desc: 'Freies Training für Sparring, Technik-Drills und zusätzlichen Fortschritt.',
+    image: openMatImage,
   },
 ];

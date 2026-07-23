@@ -4,6 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { SPECIALS } from '../data/specials';
 
+const visibleSpecials = SPECIALS.filter((special) => special.slug !== 'open-mat');
+
 const breadcrumbs = [
   { name: 'Home', href: '/' },
   { name: 'Specials', href: '/spezialitaeten' },
@@ -12,18 +14,18 @@ const breadcrumbs = [
 
 <BaseLayout
   title="Specials — Elements Jiu Jitsu Regensburg"
-  description="Kindergeburtstag, Seminare, Privatstunden, Fitness und Open Mat bei EJJ Regensburg — alle Details zu unseren Specials."
+  description="Kindergeburtstag, Seminare, Privatstunden sowie Fitness & Kondition bei EJJ Regensburg — alle Details zu unseren Specials."
   breadcrumbs={breadcrumbs}
 >
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
     <SectionHeading kicker="Mehr als nur Klassen" as="h1">
       Unsere Specials
       <Fragment slot="sub">
-        <p>Vom Kampfsport-Kindergeburtstag bis zur Open Mat – klick dich rein und erfahre alle Details.</p>
+        <p>Vom Kampfsport-Kindergeburtstag bis zu Fitness &amp; Kondition – klick dich rein und erfahre alle Details.</p>
       </Fragment>
     </SectionHeading>
     <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {SPECIALS.map((special) => (
+      {visibleSpecials.map((special) => (
         <a
           href={`/specials/${special.slug}`}
           class="group overflow-hidden rounded-lg border border-border bg-card transition-smooth hover:-translate-y-1 hover:border-primary/60"

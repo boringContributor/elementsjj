@@ -7,7 +7,7 @@ import { OFFERS } from '../data/offers';
 const offerCatalogLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Kampfsportangebote in Regensburg und Kelheim',
+  name: 'Sportangebote in Regensburg und Kelheim',
   itemListElement: OFFERS.map((offer, index) => ({
     '@type': 'ListItem',
     position: index + 1,
@@ -19,20 +19,20 @@ const offerCatalogLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Kampfsportangebot', href: '/kampfsportangebote' },
+  { name: 'Sportangebot', href: '/kampfsportangebote' },
 ];
 ---
 
 <BaseLayout
-  title="Kampfsportangebot — Elements Jiu Jitsu Regensburg"
-  description="BJJ, MMA, Thaiboxen/Kickboxen, Grappling/NoGi, Frauenkurse und Kindertraining bei EJJ in Regensburg und Kelheim. Kostenloses Probetraining für Anfänger."
+  title="Sportangebot — Elements Jiu Jitsu Regensburg"
+  description="BJJ, MMA, Thaiboxen/Kickboxen, Grappling, Frauenkurse, Kindertraining und Open Mat bei EJJ in Regensburg und Kelheim. Kostenloses Probetraining für Anfänger."
   breadcrumbs={breadcrumbs}
   jsonLd={[offerCatalogLd]}
   keywords={['Kampfsport Regensburg', 'BJJ Regensburg', 'MMA Regensburg', 'Thaiboxen Regensburg', 'Grappling Kelheim', 'Kindertraining Regensburg']}
 >
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
     <SectionHeading kicker="Was wir trainieren" as="h1">
-      Unser Kampfsportangebot
+      Unser Sportangebot
     </SectionHeading>
     <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {OFFERS.map((offer, index) => (
