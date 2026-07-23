@@ -6,20 +6,59 @@ import { TRAINERS } from '../data/trainers';
 interface Props {
   tags: TrainerTag[];
   title?: string;
+  filterable?: boolean;
+  showTags?: boolean;
 }
 
-const { tags, title = 'Deine Trainer' } = Astro.props;
+const {
+  tags,
+  title = 'Deine Trainer',
+  filterable = false,
+  showTags = false,
+} = Astro.props;
+
 const trainers = TRAINERS.filter((trainer) =>
   tags.some((tag) => trainer.tags.includes(tag))
 );
 ---
 
 {trainers.length > 0 && (
-  <section>
+  <section data-trainer-section data-filterable={filterable ? 'true' : 'false'}>
     <h2 class="font-display text-2xl font-bold uppercase">{title}</h2>
+
+    {filterable && (
+      <div
+        class="mt-5 flex flex-wrap gap-2"
+        aria-label="Trainer nach Sportart oder Standort filtern"
+      >
+        <button
+          type="button"
+          class="trainer-filter rounded-full border border-primary px-3 py-1.5 text-sm font-semibold transition-colors"
+          data-trainer-filter=""
+          aria-pressed="true"
+        >
+          Alle
+        </button>
+        {tags.map((tag) => (
+          <button
+            type="button"
+            class="trainer-filter rounded-full border border-border px-3 py-1.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+            data-trainer-filter={tag}
+            aria-pressed="false"
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    )}
+
     <ul class="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
       {trainers.map((trainer, index) => (
-        <li class="overflow-hidden rounded-lg border border-border bg-card">
+        <li
+          class="overflow-hidden rounded-lg border border-border bg-card"
+          data-trainer-card
+          data-trainer-tags={trainer.tags.join('|')}
+        >
           <Image
             src={trainer.image}
             alt={trainer.name + ' — Trainer bei Elements Jiu Jitsu'}
@@ -30,18 +69,52 @@ const trainers = TRAINERS.filter((trainer) =>
           />
           <div class="p-3 text-center">
             <p class="text-sm font-semibold">{trainer.name}</p>
-            <div class="mt-2 flex flex-wrap justify-center gap-1.5">
-              {trainer.tags
-                .filter((tag) => tags.includes(tag))
-                .map((tag) => (
-                  <span class="rounded-full border border-primary/35 bg-primary/10 px-2 py-0.5 text-[0.65rem] font-semibold text-primary">
-                    {tag}
-                  </span>
-                ))}
-            </div>
+            {showTags && (
+              <div class="mt-2 flex flex-wrap justify-center gap-1.5">
+                {trainer.tags
+                  .filter((tag) => tags.includes(tag))
+                  .map((tag) => (
+                    <span class="rounded-full border border-primary/35 bg-primary/10 px-2 py-0.5 text-[0.65rem] font-semibold text-primary">
+                      {tag}
+                    </span>
+                  ))}
+              </div>
+            )}
           </div>
         </li>
       ))}
     </ul>
   </section>
 )}
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>('[data-trainer-section][data-filterable="true"]')
+    .forEach((section) => {
+      const buttons = section.querySelectorAll<HTMLButtonElement>('[data-trainer-filter]');
+      const cards = section.querySelectorAll<HTMLElement>('[data-trainer-card]');
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const selectedTag = button.dataset.trainerFilter ?? '';
+
+          buttons.forEach((candidate) => {
+            candidate.setAttribute('aria-pressed', String(candidate === button));
+          });
+
+          cards.forEach((card) => {
+            const cardTags = (card.dataset.trainerTags ?? '').split('|');
+            card.hidden = selectedTag !== '' && !cardTags.includes(selectedTag);
+          });
+        });
+      });
+    });
+</script>
+
+<style>
+  .trainer-filter[aria-pressed='true'] {
+    border-color: rgb(var(--color-primary));
+    background: rgb(var(--color-primary));
+    color: white;
+  }
+</style>
