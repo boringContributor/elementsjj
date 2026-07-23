@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import type { TrainerTag } from '../data/trainers';
+import { TRAINERS } from '../data/trainers';
+
+interface Props {
+  tags: TrainerTag[];
+  title?: string;
+}
+
+const { tags, title = 'Deine Trainer' } = Astro.props;
+const trainers = TRAINERS.filter((trainer) =>
+  tags.some((tag) => trainer.tags.includes(tag))
+);
+---
+
+{trainers.length > 0 && (
+  <section>
+    <h2 class="font-display text-2xl font-bold uppercase">{title}</h2>
+    <ul class="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {trainers.map((trainer, index) => (
+        <li class="overflow-hidden rounded-lg border border-border bg-card">
+          <Image
+            src={trainer.image}
+            alt={trainer.name + ' — Trainer bei Elements Jiu Jitsu'}
+            widths={[240, 480]}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            class="aspect-[4/5] w-full object-cover object-top"
+            loading={index < 4 ? 'eager' : 'lazy'}
+          />
+          <div class="p-3 text-center">
+            <p class="text-sm font-semibold">{trainer.name}</p>
+            <div class="mt-2 flex flex-wrap justify-center gap-1.5">
+              {trainer.tags
+                .filter((tag) => tags.includes(tag))
+                .map((tag) => (
+                  <span class="rounded-full border border-primary/35 bg-primary/10 px-2 py-0.5 text-[0.65rem] font-semibold text-primary">
+                    {tag}
+                  </span>
+                ))}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

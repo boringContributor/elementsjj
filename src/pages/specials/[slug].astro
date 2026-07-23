@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactButtons from '../../components/ContactButtons.astro';
+import TrainerSection from '../../components/TrainerSection.astro';
 import { SPECIALS, specialWhatsAppUrl } from '../../data/specials';
 import { SITE } from '../../data/site';
+import type { TrainerTag } from '../../data/trainers';
 
 export function getStaticPaths() {
   return SPECIALS.map((special) => ({ params: { slug: special.slug }, props: { special } }));
@@ -12,6 +14,7 @@ const { special } = Astro.props;
 const whatsappUrl = specialWhatsAppUrl(special.slug);
 const locationLabel = special.locationLabel ?? 'Regensburg';
 const isSportOffer = special.slug === 'open-mat';
+const fitnessTrainerTags: TrainerTag[] = ['Fitness & Kondition'];
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
@@ -121,6 +124,10 @@ const corporateBenefits = [
             Jetzt Firmen-Event anfragen
           </a>
         </section>
+      )}
+
+      {special.slug === 'fitness-kondition' && (
+        <TrainerSection tags={fitnessTrainerTags} title="Trainer für Fitness & Kondition" />
       )}
 
       <section class="rounded-lg border border-border bg-card p-6">

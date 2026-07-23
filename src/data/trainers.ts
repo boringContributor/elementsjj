@@ -11,39 +11,55 @@ function img(file: string): ImageMetadata {
   return match.default;
 }
 
+export const TRAINER_TAGS = [
+  'BJJ',
+  'Grappling',
+  'Thaiboxen',
+  'Kids-BJJ',
+  'Kids-Kickboxen',
+  'MMA',
+  'Fitness & Kondition',
+  'Frauen-BJJ',
+  'Frauen-Kickboxen',
+  'Kelheim',
+] as const;
+
+export type TrainerTag = (typeof TRAINER_TAGS)[number];
+
 export interface Trainer {
   name: string;
   image: ImageMetadata;
+  tags: TrainerTag[];
 }
 
 export const TRAINERS: Trainer[] = [
-  { name: 'Maximilian Alkofer', image: img('maximilian-alkofer.jpg') },
-  { name: 'Patricia Materne', image: img('patricia-materne.jpg') },
-  { name: 'Henry Cuffy', image: img('henry-cuffy.jpg') },
-  { name: 'Marian Bauer', image: img('marian-bauer.jpg') },
-  { name: 'Ahmet Ocak', image: img('ahmet-ocak.png') },
-  { name: 'Robin Hau', image: img('robin-hau.jpg') },
-  { name: 'Stefan Schönhärl', image: img('stefan-schoenhaerl.jpg') },
-  { name: 'Milos', image: img('milos.jpg') },
-  { name: 'Blend Ajazi', image: img('blend-ajazi.png') },
-  { name: 'Samuel Blöchl', image: img('samuel-bloechl.png') },
-  { name: 'Adrian Caprariu', image: img('adrian-caprariu.jpg') },
-  { name: 'Carla Luttmann', image: img('carla-luttmann.jpg') },
-  { name: 'Flo Gmeinwieser', image: img('flo-gmeinwieser.jpg') },
-  { name: 'Andreas Völkl', image: img('andreas-voelkl.png') },
-  { name: 'Onur Kavucoglu', image: img('onur-kavucoglu.jpg') },
-  { name: 'Niklas Jurek', image: img('niklas-jurek.png') },
-  { name: 'Franziska Völkl', image: img('franziska-voelkl.jpg') },
-  { name: 'Julia Radeczky', image: img('julia-radeczky.png') },
-  { name: 'Arian Emini', image: img('arian-emini.png') },
-  { name: 'Alexandra Hammerl', image: img('alexandra-hammerl.jpg') },
-  { name: 'Maximilian Köppl', image: img('maximilian-koeppl.jpg') },
-  { name: 'Lea Smolarczyk', image: img('lea-smolarczyk.jpg') },
-  { name: 'Nico Sperger', image: img('nico-sperger.jpg') },
-  { name: 'Stefan Kuhn', image: img('stefan-kuhn.jpg') },
-  { name: 'Tilo Lützner', image: img('tilo-luetzner.jpg') },
-  { name: 'Johannes Nägelsbach', image: img('johannes-naegelsbach.jpg') },
-  { name: 'Jakob Penzenstadler', image: img('jakob-penzenstadler.jpg') },
+  { name: 'Maximilian Alkofer', image: img('maximilian-alkofer.jpg'), tags: ['BJJ','Grappling','Thaiboxen','Kids-BJJ','Kids-Kickboxen','MMA','Frauen-BJJ','Frauen-Kickboxen','Kelheim'] },
+  { name: 'Patricia Materne', image: img('patricia-materne.jpg'), tags: ['Thaiboxen'] },
+  { name: 'Henry Cuffy', image: img('henry-cuffy.jpg'), tags: ['BJJ','Grappling','Kelheim'] },
+  { name: 'Marian Bauer', image: img('marian-bauer.jpg'), tags: ['Grappling'] },
+  { name: 'Ahmet Ocak', image: img('ahmet-ocak.png'), tags: ['Kids-BJJ','Kids-Kickboxen','BJJ','MMA'] },
+  { name: 'Robin Hau', image: img('robin-hau.jpg'), tags: ['BJJ'] },
+  { name: 'Stefan Schönhärl', image: img('stefan-schoenhaerl.jpg'), tags: ['MMA'] },
+  { name: 'Milos', image: img('milos.jpg'), tags: ['Thaiboxen'] },
+  { name: 'Blend Ajazi', image: img('blend-ajazi.png'), tags: ['BJJ','Grappling','Kelheim'] },
+  { name: 'Samuel Blöchl', image: img('samuel-bloechl.png'), tags: ['Kids-Kickboxen','Kids-BJJ'] },
+  { name: 'Adrian Caprariu', image: img('adrian-caprariu.jpg'), tags: ['MMA'] },
+  { name: 'Carla Luttmann', image: img('carla-luttmann.jpg'), tags: ['Fitness & Kondition'] },
+  { name: 'Flo Gmeinwieser', image: img('flo-gmeinwieser.jpg'), tags: ['BJJ','Grappling'] },
+  { name: 'Andreas Völkl', image: img('andreas-voelkl.png'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
+  { name: 'Onur Kavucoglu', image: img('onur-kavucoglu.jpg'), tags: ['BJJ','Grappling'] },
+  { name: 'Niklas Jurek', image: img('niklas-jurek.png'), tags: ['Kids-Kickboxen','Kids-BJJ'] },
+  { name: 'Franziska Völkl', image: img('franziska-voelkl.jpg'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
+  { name: 'Julia Radeczky', image: img('julia-radeczky.png'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
+  { name: 'Arian Emini', image: img('arian-emini.png'), tags: ['Kids-Kickboxen'] },
+  { name: 'Alexandra Hammerl', image: img('alexandra-hammerl.jpg'), tags: ['Frauen-BJJ','BJJ','Grappling'] },
+  { name: 'Maximilian Köppl', image: img('maximilian-koeppl.jpg'), tags: ['BJJ','Grappling'] },
+  { name: 'Lea Smolarczyk', image: img('lea-smolarczyk.jpg'), tags: ['Frauen-BJJ','BJJ'] },
+  { name: 'Nico Sperger', image: img('nico-sperger.jpg'), tags: ['BJJ','Grappling'] },
+  { name: 'Stefan Kuhn', image: img('stefan-kuhn.jpg'), tags: ['Grappling'] },
+  { name: 'Tilo Lützner', image: img('tilo-luetzner.jpg'), tags: ['BJJ','Grappling'] },
+  { name: 'Johannes Nägelsbach', image: img('johannes-naegelsbach.jpg'), tags: ['Thaiboxen'] },
+  { name: 'Jakob Penzenstadler', image: img('jakob-penzenstadler.jpg'), tags: ['Thaiboxen'] },
 ];
 
 export const HEADCOACH = {

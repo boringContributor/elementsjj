@@ -1,9 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CtaSection from '../components/CtaSection.astro';
-import { TRAINERS } from '../data/trainers';
+import TrainerSection from '../components/TrainerSection.astro';
+import { TRAINER_TAGS } from '../data/trainers';
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
@@ -26,21 +26,9 @@ const breadcrumbs = [
       </Fragment>
     </SectionHeading>
 
-    <ul class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
-      {TRAINERS.map((trainer, index) => (
-        <li class="overflow-hidden rounded-lg border border-border bg-card">
-          <Image
-            src={trainer.image}
-            alt={`${trainer.name} — Trainer bei Elements Jiu Jitsu Regensburg`}
-            widths={[240, 480]}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-            class="aspect-[4/5] w-full object-cover object-top"
-            loading={index < 5 ? 'eager' : 'lazy'}
-          />
-          <p class="px-3 py-3 text-center text-sm font-semibold">{trainer.name}</p>
-        </li>
-      ))}
-    </ul>
+    <div class="mt-12">
+      <TrainerSection tags={[...TRAINER_TAGS]} title="Alle Trainer" />
+    </div>
   </section>
 
   <CtaSection />

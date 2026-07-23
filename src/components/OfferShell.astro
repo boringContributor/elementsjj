@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import OfferSchedule from './OfferSchedule.astro';
+import TrainerSection from './TrainerSection.astro';
 import type { ImageMetadata } from 'astro';
 import type { SportFilter } from '../data/schedule';
+import type { TrainerTag } from '../data/trainers';
 
 interface Props {
   title: string;
@@ -19,6 +21,8 @@ interface Props {
   scheduleFilter?: SportFilter;
   scheduleTitle?: string;
   scheduleDisciplineIncludes?: string[];
+  trainerTags?: TrainerTag[];
+  trainerTitle?: string;
 }
 
 const {
@@ -35,6 +39,8 @@ const {
   scheduleFilter,
   scheduleTitle,
   scheduleDisciplineIncludes,
+  trainerTags,
+  trainerTitle,
 } = Astro.props;
 
 const equipmentWithHygiene: [string, string][] = [
@@ -71,6 +77,10 @@ const breadcrumbs = [
       <slot />
 
       {scheduleFilter && <OfferSchedule filter={scheduleFilter} title={scheduleTitle} disciplineIncludes={scheduleDisciplineIncludes} />}
+
+      {trainerTags && trainerTags.length > 0 && (
+        <TrainerSection tags={trainerTags} title={trainerTitle} />
+      )}
 
       <section>
         <h2 class="font-display text-2xl font-bold uppercase">Ausrüstung für dein erstes Training</h2>
