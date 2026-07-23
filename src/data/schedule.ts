@@ -30,8 +30,8 @@ export const SESSIONS: ClassSession[] = [
   { track: 'Red', day: 'Saturday', start: '13:30', end: '15:00', discipline: 'MMA', level: 'All Levels' },
 
   { track: 'Kelheim', day: 'Tuesday', start: '18:45', end: '19:45', discipline: 'BJJ', level: 'All Levels' },
-  { track: 'Kelheim', day: 'Tuesday', start: '20:00', end: '21:00', discipline: 'NoGi', level: 'All Levels' },
-  { track: 'Kelheim', day: 'Thursday', start: '18:45', end: '19:45', discipline: 'NoGi', level: 'All Levels' },
+  { track: 'Kelheim', day: 'Tuesday', start: '20:00', end: '21:00', discipline: 'Grappling', level: 'All Levels' },
+  { track: 'Kelheim', day: 'Thursday', start: '18:45', end: '19:45', discipline: 'Grappling', level: 'All Levels' },
   { track: 'Kelheim', day: 'Thursday', start: '20:00', end: '21:00', discipline: 'BJJ', level: 'All Levels' },
 
   { track: 'Blue', day: 'Monday', start: '08:30', end: '09:30', discipline: 'Grappling', level: 'Fundamentals' },
