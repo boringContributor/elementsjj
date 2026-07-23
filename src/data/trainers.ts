@@ -33,14 +33,14 @@ export interface Trainer {
 }
 
 export const TRAINERS: Trainer[] = [
-  { name: 'Maximilian Alkofer', image: img('maximilian-alkofer.jpg'), tags: ['BJJ','Grappling','Thaiboxen','Kids-BJJ','Kids-Kickboxen','MMA','Frauen-BJJ','Frauen-Kickboxen','Kelheim'] },
+  { name: 'Maximilian Alkofer', image: img('maximilian-alkofer.jpg'), tags: ['BJJ','Grappling','Thaiboxen','Kids-BJJ','Kids-Kickboxen','MMA','Kelheim'] },
   { name: 'Patricia Materne', image: img('patricia-materne.jpg'), tags: ['Thaiboxen'] },
   { name: 'Henry Cuffy', image: img('henry-cuffy.jpg'), tags: ['BJJ','Grappling','Kelheim'] },
   { name: 'Marian Bauer', image: img('marian-bauer.jpg'), tags: ['Grappling'] },
   { name: 'Ahmet Ocak', image: img('ahmet-ocak.png'), tags: ['Kids-BJJ','Kids-Kickboxen','BJJ','MMA'] },
   { name: 'Robin Hau', image: img('robin-hau.jpg'), tags: ['BJJ'] },
   { name: 'Stefan Schönhärl', image: img('stefan-schoenhaerl.jpg'), tags: ['MMA'] },
-  { name: 'Milos', image: img('milos.jpg'), tags: ['Thaiboxen'] },
+  { name: 'Milos Radosavljevic', image: img('milos.jpg'), tags: ['Thaiboxen'] },
   { name: 'Blend Ajazi', image: img('blend-ajazi.png'), tags: ['BJJ','Grappling','Kelheim'] },
   { name: 'Samuel Blöchl', image: img('samuel-bloechl.png'), tags: ['Kids-Kickboxen','Kids-BJJ'] },
   { name: 'Adrian Caprariu', image: img('adrian-caprariu.jpg'), tags: ['MMA'] },
