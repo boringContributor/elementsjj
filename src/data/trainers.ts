@@ -44,6 +44,7 @@ export const TRAINERS: Trainer[] = [
   { name: 'Blend Ajazi', image: img('blend-ajazi.png'), tags: ['BJJ','Grappling','Kelheim'] },
   { name: 'Samuel Blöchl', image: img('samuel-bloechl.png'), tags: ['Kids-Kickboxen','Kids-BJJ'] },
   { name: 'Adrian Caprariu', image: img('adrian-caprariu.jpg'), tags: ['MMA'] },
+  { name: 'Martin Horsch', image: img('martin-horsch.jpg'), tags: ['MMA'] },
   { name: 'Carla Luttmann', image: img('carla-luttmann.jpg'), tags: ['Fitness & Kondition'] },
   { name: 'Flo Gmeinwieser', image: img('flo-gmeinwieser.jpg'), tags: ['BJJ','Grappling'] },
   { name: 'Andreas Völkl', image: img('andreas-voelkl.png'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
