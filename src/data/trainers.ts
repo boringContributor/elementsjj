@@ -34,7 +34,7 @@ export interface Trainer {
 
 export const TRAINERS: Trainer[] = [
   { name: 'Maximilian Alkofer', image: img('maximilian-alkofer.jpg'), tags: ['BJJ','Grappling','Thaiboxen','Kids-BJJ','Kids-Kickboxen','MMA','Kelheim'] },
-  { name: 'Patricia Materne', image: img('patricia-materne.jpg'), tags: ['Thaiboxen'] },
+  { name: 'Patricia Materne', image: img('patricia-materne.jpg'), tags: ['Thaiboxen','Frauen-Kickboxen'] },
   { name: 'Henry Cuffy', image: img('henry-cuffy.jpg'), tags: ['BJJ','Grappling','Kelheim'] },
   { name: 'Marian Bauer', image: img('marian-bauer.jpg'), tags: ['Grappling'] },
   { name: 'Ahmet Ocak', image: img('ahmet-ocak.jpg'), tags: ['Kids-BJJ','Kids-Kickboxen','BJJ','MMA'] },
@@ -51,7 +51,7 @@ export const TRAINERS: Trainer[] = [
   { name: 'Onur Kavucoglu', image: img('onur-kavucoglu.jpg'), tags: ['BJJ','Grappling'] },
   { name: 'Niklas Jurek', image: img('niklas-jurek.png'), tags: ['Kids-Kickboxen','Kids-BJJ'] },
   { name: 'Franziska Völkl', image: img('franziska-voelkl.jpg'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
-  { name: 'Julia Radeczky', image: img('julia-radeczky.png'), tags: ['Kids-BJJ','Kids-Kickboxen'] },
+  { name: 'Julia Radeczky', image: img('julia-radeczky.png'), tags: ['Kids-BJJ','Kids-Kickboxen','Frauen-Kickboxen'] },
   { name: 'Arian Emini', image: img('arian-emini.png'), tags: ['Kids-Kickboxen'] },
   { name: 'Alexandra Hammerl', image: img('alexandra-hammerl.jpg'), tags: ['Frauen-BJJ','BJJ','Grappling'] },
   { name: 'Maximilian Köppl', image: img('maximilian-koeppl.jpg'), tags: ['BJJ','Grappling','Kelheim'] },
