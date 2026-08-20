@@ -8,6 +8,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://www.elementsjiujitsu.de',
   trailingSlash: 'never',
+  redirects: {
+    '/schnuppertraining': '/probetraining',
+  },
   // Interne Links im Viewport vorladen — Navigation fühlt sich instant an
   prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
   integrations: [
