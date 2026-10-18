@@ -16,7 +16,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       // noindex-Seiten gehören nicht in die Sitemap
-      filter: (page) => !page.includes('/impressum') && !page.includes('/datenschutz') && !page.includes('/barrierefreiheit'),
+      filter: (page) =>
+        !page.includes('/impressum') &&
+        !page.includes('/datenschutz') &&
+        !page.includes('/barrierefreiheit') &&
+        !page.includes('/intern/mandatsreferenzen'),
     }),
   ],
   vite: {
