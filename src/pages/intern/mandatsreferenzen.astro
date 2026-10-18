@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Add the published Apps Script /exec URL before merging this draft.
-const counterUrl = '';
+const counterUrl = 'https://script.google.com/macros/s/AKfycbxf1gWKj9lGRrL75G43Snt9ilXnKMUsV5zlt0zw-bufl1M6LT6WCTQtPnntVlFmEhHYMg/exec';
 ---
 
 <BaseLayout
@@ -22,24 +21,18 @@ const counterUrl = '';
         geräteübergreifend gespeichert.
       </p>
 
-      {counterUrl ? (
-        <a
-          href={counterUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="gradient-neon mt-8 inline-flex min-h-16 w-full items-center justify-center rounded-xl px-6 py-5 text-center text-lg font-bold text-primary-foreground transition-smooth hover:opacity-90 sm:w-auto sm:min-w-80"
-        >
-          Mandatsreferenzverwaltung öffnen
-        </a>
-      ) : (
-        <p class="mt-8 rounded-xl border border-border bg-background px-5 py-4 font-medium text-muted-foreground">
-          Die zentrale Bedienseite wird nach der Freigabe hier verknüpft.
-        </p>
-      )}
+      <a
+        href={counterUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="gradient-neon mt-8 inline-flex min-h-16 w-full items-center justify-center rounded-xl px-6 py-5 text-center text-lg font-bold text-primary-foreground transition-smooth hover:opacity-90 sm:w-auto sm:min-w-80"
+      >
+        Mandatsreferenzverwaltung öffnen
+      </a>
 
       <p class="mt-6 text-sm text-muted-foreground">
-        Die Bedienseite öffnet in einem eigenen Tab. Für den Zugriff muss dein Google-Konto für
-        die zentrale Tabelle freigegeben sein.
+        Die Seite ist nicht im öffentlichen Menü verlinkt und von Suchmaschinen ausgeschlossen.
+        Teile den Link nur mit den Mitarbeitern, die den Zähler verwenden sollen.
       </p>
     </div>
   </section>
