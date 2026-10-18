@@ -19,8 +19,7 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/impressum') &&
         !page.includes('/datenschutz') &&
-        !page.includes('/barrierefreiheit') &&
-        !page.includes('/intern/mandatsreferenzen'),
+        !page.includes('/barrierefreiheit'),
     }),
   ],
   vite: {
