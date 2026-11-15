@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
-import { DAY_ORDER, DAYS_DE, GYMS, SESSIONS } from '../data/schedule';
+import { DAY_ORDER, DAYS_DE, GYMS, SESSIONS, sessionNote } from '../data/schedule';
 
 const sportFilters = [
   { label: 'Alle', value: 'all' },
@@ -32,7 +32,7 @@ const compactScheduleDays = DAY_ORDER.map((day) => ({
   sessions: SESSIONS.filter((session) => session.day === day).sort((a, b) => {
     const byStart = a.start.localeCompare(b.start);
     return byStart !== 0 ? byStart : a.track.localeCompare(b.track);
-  }),
+  }).map((session) => ({ ...session, note: sessionNote(session) })),
 })).filter((day) => day.sessions.length > 0);
 
 const trackBadgeClasses: Record<string, string> = {
@@ -147,6 +147,9 @@ const trackBadgeClasses: Record<string, string> = {
                       </span>
                     </div>
                     <p class="mt-1 font-semibold leading-snug">{session.discipline}</p>
+                    {session.note && (
+                      <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-gold uppercase">{session.note}</span>
+                    )}
                     {session.level && (
                       <p class="mt-0.5 text-[11px] leading-snug text-muted-foreground">{session.level}</p>
                     )}
