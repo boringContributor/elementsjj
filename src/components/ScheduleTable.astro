@@ -58,9 +58,9 @@ const location = LOCATIONS.find((loc) => loc.slug === gym.id);
                     <time class="font-mono text-xs whitespace-nowrap text-muted-foreground">{slot.time}</time>
                     <p class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                       <span class="font-medium">{slot.name}</span>
-                      {slot.kids && (
+                      {slot.note && (
                         <span class="rounded bg-secondary px-1.5 py-0.5 text-[10px] tracking-wider text-course-blue uppercase">
-                          {slot.kids}
+                          {slot.note}
                         </span>
                       )}
                       {slot.parallel && (

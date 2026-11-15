@@ -88,10 +88,11 @@ const DAYS_DE_SHORT: Record<string, string> = {
   Sunday: 'SO',
 };
 
-/** Kinderklassen erkennen und Altersgruppe ausweisen */
-function kidsTag(discipline: string): string | undefined {
+export function sessionNote({ discipline, level }: ClassSession): string | undefined {
   if (discipline.startsWith('Youngling')) return 'Kids 4–7';
   if (discipline.startsWith('Padawan')) return 'Kids 7–12';
+  if (level === 'Advanced' && discipline === 'Brazilian Jiu Jitsu') return 'ab Blaugurt';
+  if (level === 'Advanced' && discipline === 'Grappling') return 'nach Rücksprache';
   return undefined;
 }
 
@@ -144,7 +145,7 @@ function overlaps(a: ClassSession, b: ClassSession): boolean {
 export interface ScheduleSlot {
   time: string;
   name: string;
-  kids?: string | undefined;
+  note?: string | undefined;
   categories: SportFilter[];
   parallel: boolean;
 }
@@ -182,7 +183,7 @@ export const GYMS: GymSchedule[] = TRACKS.map(({ track, id, label }) => ({
       slots: sessions.map((session) => ({
         time: `${session.start} – ${session.end}`,
         name: session.level ? `${session.discipline} – ${session.level}` : session.discipline,
-        kids: kidsTag(session.discipline),
+        note: sessionNote(session),
         categories: sportCategories(session.discipline),
         parallel: sessions.some((other) => other !== session && overlaps(session, other)),
       })),
